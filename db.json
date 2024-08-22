@@ -1,0 +1,19 @@
+{
+  "SME_SUPERMERCADO": [
+    {
+      "SME_NOMBRE": "Supermercado BBBBBB",
+      "SME_DIRECCION": "Avenida Central 456",
+      "id": "2"
+    },
+    {
+      "id": "3",
+      "SME_NOMBRE": "Supermercado C",
+      "SME_DIRECCION": "Plaza Comercial 789"
+    },
+    {
+      "id": "4",
+      "SME_NOMBRE": "Supermercado D",
+      "SME_DIRECCION": "Carretera Panamericana Km 10"
+    }
+  ]
+}

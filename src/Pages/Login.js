@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -33,10 +34,11 @@ function Login() {
                       Remember password
                     </label>
                   </div>
-
-                  <button className="btn btn-primary btn-lg btn-block" type="submit">
+                  <Link style={{ textDecoration: "none" }} to={"/consultaSuperMercado"}>
+                  <button className="btn btn-primary btn-lg btn-block" >
                     Login
                   </button>
+                  </Link>
 
                   <hr className="my-4" />
 

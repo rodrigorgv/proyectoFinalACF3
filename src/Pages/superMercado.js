@@ -105,42 +105,18 @@ const SuperMercado = () => {
       }
     });
   };
-/*
-  const handlePostdescuentos = async () => {
-    // Espera a que se resuelva la promesa de getTipoPlanilla
-    await apiService.getExpedientes();
-    await apiService.getPeriodoPlanilla();
-    await apiService.getTipoDescuento()
 
-    // Ahora tipoPlanilla tiene los datos actualizados
+  const handlePostSuperMercado = async () => {
     Swal.fire({
-      title: 'Crear Periodo Planilla',
+      title: 'Crear SuperMercado',
       html: `
       <div style="text-align: left;">
-      <label for="codigo_exp">Código EXP:</label>
+      <label for="SME_NOMBREr">Nombre SuperMercado:</label>
       <br/>
-      <select id="codigo_exp" class="swal2-select">
-      ${expediente.map(option => `<option value="${option.id}">${option.exp_nombres}</option>`).join('')}
-    </select>
+      <input type="text" id="SME_NOMBRE" class="swal2-input" placeholder="Ingrese el nombre">
       <br/>
-      <div style="text-align: left;">
-      <label for="codigo_ppl">Código Periodo Planilla:</label>
-      <br/>
-      <select id="codigo_ppl" class="swal2-select">
-      ${periodoPlanilla.map(option => `<option value="${option.id}">${option.id}</option>`).join('')}
-    </select>
-      <br/>
-      <div style="text-align: left;">
-      <label for="codigo_tdc">Código TDC:</label>
-      <br/>
-      <select id="codigo_tdc" class="swal2-select">
-      ${tipoDescuento.map(option => `<option value="${option.id}">${option.tdc_descripcion}</option>`).join('')}
-    </select>
-      <br/>                        
-      <label for="valor">Valor:</label>
-      <br/>
-      <input type="number" id="valor" class="swal2-input" placeholder="Ingrese el Valor">
-      <br/>
+      <input type="text" id="SME_DIRECCION" class="swal2-input" placeholder="Ingrese la direccion">
+      <br/>      
     </div>
       `,
       icon: 'info',
@@ -151,34 +127,29 @@ const SuperMercado = () => {
       cancelButtonText: 'Cancelar',
       preConfirm: async () => {
         // Obtener los valores de los inputs
-        // Obtener los valores de los inputs
-        const codigo_exp = Swal.getPopup().querySelector('#codigo_exp').value;
-        const codigo_ppl = Swal.getPopup().querySelector('#codigo_ppl').value;
-        const codigo_tdc = Swal.getPopup().querySelector('#codigo_tdc').value;
-        const valor = Swal.getPopup().querySelector('#valor').value;
-        const camposValidos = validaCampos(codigo_exp, codigo_ppl, codigo_tdc, valor);
+        const sme_nombre = Swal.getPopup().querySelector('#SME_NOMBRE').value;
+        const sme_direccion = Swal.getPopup().querySelector('#SME_DIRECCION').value;
+        //const camposValidos = validaCampos(codigo_exp, codigo_ppl, codigo_tdc, valor);
         // Crear el nuevo descuento
-        if (camposValidos) {
+
           try {
-            await apiService.postDescuentos({
-              dss_codexp: parseInt(codigo_exp),
-              dss_codppl: parseInt(codigo_ppl),
-              dss_codtdc: parseInt(codigo_tdc),
-              dss_valor: valor
+            await apiService.postSuperMercado({
+              SME_NOMBRE: sme_nombre,
+              SME_DIRECCION: sme_direccion
             });
-            Swal.fire('Creación exitosa', 'El nuevo descuento ha sido creado.', 'success');
-            const dataDescuentos = await apiService.getDescuentos();
-            setdescuentos(dataDescuentos);
+            Swal.fire('Creación exitosa', 'El nuevo supermercado ha sido creado.', 'success');
+            const dataSuperMercados = await apiService.getSuperMercados();
+            setSuperMercado(dataSuperMercados);
           } catch (error) {
-            console.error('Error al crear el descuento:', error);
-            Swal.fire('Error', 'No se pudo crear el nuevo descuento.', 'error');
+            console.error('Error al crear el supermercado:', error);
+            Swal.fire('Error', 'No se pudo crear el nuevo supermercado.', 'error');
           }
-        }
+        
       }
     });
   };
 
-
+/*
   const validaCampos = (codigo_exp, codigo_ppl, codigo_tdc, valor) => {
     if (codigo_exp === '' || codigo_ppl === '' || codigo_tdc === '' || valor === '') {
       console.log("error")
@@ -237,7 +208,7 @@ const SuperMercado = () => {
       </div>
       <div class="alineaDerecha ">
         <div className="alineaDerecha">
-          <button type="button" className="btn btn-outline-success " >
+          <button type="button" className="btn btn-outline-success " onClick={() => handlePostSuperMercado()}>
             <i className="fa-solid fa-plus"></i> Crear SuperMercado
           </button>
         </div>

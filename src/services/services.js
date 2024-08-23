@@ -27,6 +27,17 @@ getSuperMercadoId: async (id) => {
     }
   },
 
+//CREA 1 SUPERMERCADO  
+  postSuperMercado: async (nuevoSupermercado) => {
+    try {
+      const response = await axios.post(urlSME, nuevoSupermercado);
+      console.log('Nuevo supermercado creado:', response.data);
+    } catch (error) {
+      console.error('Error al crear el supermercado:', error);
+      throw error;
+    }
+  },  
+
 //ACTUALIZA 1 SUPERMERCADO
   updateSuperMercado: async (id, newData) => {
     try {
@@ -37,6 +48,7 @@ getSuperMercadoId: async (id) => {
     }
   },  
 
+//ELIMINA 1 SUPERMERCADO  
   deleteSuperMercado: async (id) => {
     const response = await axios.delete(`${urlSME}/${id}`);
     console.log(response);

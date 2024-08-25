@@ -33,19 +33,19 @@ const SuperMercado = () => {
   //metodos para sweetalert
 
   const handleModificarSuperMercado = async (id) => {
-    try {      
-      console.log(`el ID es ${id}`);
+    try {          
       const superMercadoPorId = await apiService.getSuperMercadoId(id);
       console.log(superMercadoPorId);
+      //*********ojo ojo---aca deben de añadir todos los nuevos campos que les corresponden, deben de añadir 1 label y un input por campo.  */
       Swal.fire({
         title: 'Modificar SuperMercado',
         html: `
           <div style="text-align: left;">
-            <label for="SME_NOMBRE">Nombre SuperMercado:</label>
+            <label for="nombre_sme">Nombre SuperMercado:</label>
             <br/>
             <input type="Text" id="nombre_sme" class="swal2-input" placeholder="Ingrese el nombre" value="${superMercadoPorId.SME_NOMBRE}">
             <br/>
-            <label for="SME_DIRECCION">Direccion SuperMercado:</label>
+            <label for="direccion_sme">Direccion SuperMercado:</label>
             <br/>
             <input type="Text" id="direccion_sme" class="swal2-input" placeholder="Ingrese la direccion" value="${superMercadoPorId.SME_DIRECCION}">            
           </div>       
@@ -58,6 +58,7 @@ const SuperMercado = () => {
         cancelButtonText: 'Cancelar',
         preConfirm: () => {
           // Obtener los valores de los inputs
+          //*********ojo ojo---aca deben de añadir todos los nuevos campos que les corresponden, deben de añadir con # el nombre que pusieron en el ID de los input  */
           const nombre_sme    = Swal.getPopup().querySelector('#nombre_sme').value;
           const direccion_sme = Swal.getPopup().querySelector('#direccion_sme').value;
 
@@ -107,6 +108,7 @@ const SuperMercado = () => {
   };
 
   const handlePostSuperMercado = async () => {
+    //*********ojo ojo---aca deben de añadir todos los nuevos campos que les corresponden, deben de añadir 1 label y un input por campo.  */
     Swal.fire({
       title: 'Crear SuperMercado',
       html: `
@@ -127,6 +129,7 @@ const SuperMercado = () => {
       cancelButtonText: 'Cancelar',
       preConfirm: async () => {
         // Obtener los valores de los inputs
+        //*********ojo ojo---aca deben de añadir todos los nuevos campos que les corresponden, deben de añadir con # el nombre que pusieron en el ID de los input  */
         const sme_nombre = Swal.getPopup().querySelector('#SME_NOMBRE').value;
         const sme_direccion = Swal.getPopup().querySelector('#SME_DIRECCION').value;
         //const camposValidos = validaCampos(codigo_exp, codigo_ppl, codigo_tdc, valor);
@@ -149,24 +152,6 @@ const SuperMercado = () => {
     });
   };
 
-/*
-  const validaCampos = (codigo_exp, codigo_ppl, codigo_tdc, valor) => {
-    if (codigo_exp === '' || codigo_ppl === '' || codigo_tdc === '' || valor === '') {
-      console.log("error")
-      Swal.fire({
-        title: 'Error',
-        text: 'Todos los campos son obligatorios',
-        icon: 'error',
-        confirmButtonColor: '#3085d6',
-        confirmButtonText: 'Ok',
-      });
-      return false;
-    }
-    return true;
-  }
-
-*/
-
   //fin metodos sweetalert 
   const accionesBotones = (row) => (
     <div className="opcionesBTN">
@@ -175,6 +160,7 @@ const SuperMercado = () => {
     </div>
   );
 
+  //************ojo ojo--colocar todos los campos de la tabla, seguir estructura que ya se tiene */
   const columnas = [
     {
       name: 'ID',
@@ -195,7 +181,7 @@ const SuperMercado = () => {
       name: 'Acciones',
       cell: accionesBotones,
       style: {
-        width: '200px', // Ajusta el tamaño de la columna "Acciones" según sea necesario
+        width: '200px',
       },
     },
   ];

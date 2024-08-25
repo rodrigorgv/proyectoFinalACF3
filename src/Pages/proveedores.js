@@ -1,0 +1,208 @@
+import React, { useState, useEffect } from 'react';
+import NavbarAdminComponent from '../Components/NavbarAdminComponent';
+import TableComponent from '../Components/TableComponent';
+import apiService from '../services/services';
+import Swal from 'sweetalert2';
+
+
+const Proveedores = () => {
+  const [Proveedores, setProveedores] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const dataProveedores = await apiService.getProveedores();
+        setProveedores(dataProveedores);
+
+      } catch (error) {
+        console.error('Error al obtener datos:', error);
+        Swal.fire({
+          title: 'Error',
+          text: 'No se pudo obtener la información necesaria.',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        });
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+
+  //metodos para sweetalert
+
+  const handleModificarProveedores = async (id) => {
+    try {          
+      const proveedoresPorId = await apiService.getProveedoresId(id);
+      console.log(proveedoresPorId);
+      //***ojo ojo---aca deben de añadir todos los nuevos campos que les corresponden, deben de añadir 1 label y un input por campo.  */
+      Swal.fire({
+        title: 'Modificar Proveedor',
+        html: `
+          <div style="text-align: left;">
+            <label for="nombre_pro">Nombre Proveedor:</label>
+            <br/>
+            <input type="Text" id="nombre_pro" class="swal2-input" placeholder="Ingrese el nombre" value="${proveedoresPorId.PRO_NOMBRE}">
+            <br/>
+            <label for="correo_pro">Correo Proveedor:</label>
+            <br/>
+            <input type="Text" id="correo_pro" class="swal2-input" placeholder="Ingrese la direccion" value="${proveedoresPorId.PRO_CORREO}">            
+          </div>       
+        `,
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Actualizar',
+        cancelButtonText: 'Cancelar',
+        preConfirm: () => {
+          // Obtener los valores de los inputs
+          //***ojo ojo---aca deben de añadir todos los nuevos campos que les corresponden, deben de añadir con # el nombre que pusieron en el ID de los input  */
+          const nombre_pro    = Swal.getPopup().querySelector('#nombre_pro').value;
+          const correo_pro = Swal.getPopup().querySelector('#correo_pro').value;
+
+          // Llamar a la función para actualizar el super
+          apiService.updateProveedores(id, {
+            PRO_NOMBRE: nombre_pro,           
+            PRO_CORREO: correo_pro
+          });
+        }
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          Swal.fire('Actualización confirmada', '', 'success');
+          const dataProveedores = await apiService.getProveedores();
+          setProveedores(dataProveedores);
+        }
+      });
+    } catch (error) {
+      console.error('Error al consultar el proveedor:', error);
+      Swal.fire({
+        title: 'Error',
+        text: 'No se pudo encontrar el proveedor con el ID proporcionado',
+        icon: 'error',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Ok',
+      });
+    }
+  };
+
+  const handleEliminarProveedores = (id) => {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: '¿Quieres eliminar este Proveedor?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await apiService.deleteProveedores(id);
+        const dataProveedores = await apiService.getProveedores();
+        setProveedores(dataProveedores);
+        console.log('Proveedor eliminado');
+      }
+    });
+  };
+
+  const handlePostProveedores = async () => {
+    //***ojo ojo---aca deben de añadir todos los nuevos campos que les corresponden, deben de añadir 1 label y un input por campo.  */
+    Swal.fire({
+      title: 'Crear Proveedor',
+      html: `
+      <div style="text-align: left;">
+      <label for="PRO_NOMBREr">Nombre PROVEEDOR:</label>
+      <br/>
+      <input type="text" id="PRO_NOMBRE" class="swal2-input" placeholder="Ingrese el nombre">
+      <br/>
+      <input type="text" id="PRO_CORREO" class="swal2-input" placeholder="Ingrese el correo">
+      <br/>      
+    </div>
+      `,
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Crear',
+      cancelButtonText: 'Cancelar',
+      preConfirm: async () => {
+        // Obtener los valores de los inputs
+        //***ojo ojo---aca deben de añadir todos los nuevos campos que les corresponden, deben de añadir con # el nombre que pusieron en el ID de los input  */
+        const pro_nombre = Swal.getPopup().querySelector('#PRO_NOMBRE').value;
+        const pro_correo = Swal.getPopup().querySelector('#PRO_CORREO').value;
+        //const camposValidos = validaCampos(codigo_exp, codigo_ppl, codigo_tdc, valor);
+        // Crear el nuevo descuento
+
+          try {
+            await apiService.postProveedor({
+              PRO_NOMBRE: pro_nombre,
+              PRO_CORREO: pro_correo
+            });
+            Swal.fire('Creación exitosa', 'El nuevo proveedor ha sido creado.', 'success');
+            const dataProveedores = await apiService.getProveedores();
+            setProveedores(dataProveedores);
+          } catch (error) {
+            console.error('Error al crear el proveedor:', error);
+            Swal.fire('Error', 'No se pudo crear el nuevo proveedor.', 'error');
+          }
+        
+      }
+    });
+  };
+
+  //fin metodos sweetalert 
+  const accionesBotones = (row) => (
+    <div className="opcionesBTN">
+      <button type="button" className="btn btn-outline-primary custom-tooltip" data-toggle="tooltip" data-placement="top" title="Tooltip on top" onClick={() => handleModificarProveedores(row.id)}><i className="fa-solid fa-pen"></i></button>
+      <button type="button" className="btn btn-outline-danger" onClick={() => handleEliminarProveedores(row.id)}><i className="fa-solid fa-trash"></i></button>
+    </div>
+  );
+
+  //****ojo ojo--colocar todos los campos de la tabla, seguir estructura que ya se tiene */
+  const columnas = [
+    {
+      name: 'ID',
+      selector: row => row.id,
+      sortable: true,
+    },
+    {
+      name: 'Nombre Proveedor',
+      selector: row => row.PRO_NOMBRE,
+      sortable: true,
+    },
+    {
+      name: 'Correo Proveedor',
+      selector: row => row.PRO_CORREO,
+      sortable: true,
+    },  
+    {
+      name: 'Acciones',
+      cell: accionesBotones,
+      style: {
+        width: '200px',
+      },
+    },
+  ];
+
+  return (
+    <div>
+      <NavbarAdminComponent />
+      <div className="titulo">
+        <h1>Proveedores</h1>
+      </div>
+      <div class="alineaDerecha ">
+        <div className="alineaDerecha">
+          <button type="button" className="btn btn-outline-success " onClick={() => handlePostProveedores()}>
+            <i className="fa-solid fa-plus"></i> Crear Proveedores
+          </button>
+        </div>
+      </div>
+      <TableComponent datostabla={Proveedores} columnas={columnas} />
+    </div>
+
+  );
+};
+
+export default Proveedores;

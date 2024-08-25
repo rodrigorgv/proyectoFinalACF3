@@ -1,11 +1,6 @@
 {
   "SME_SUPERMERCADO": [
     {
-      "SME_NOMBRE": "Supermercado BBBBBB",
-      "SME_DIRECCION": "Avenida Central 456",
-      "id": "2"
-    },
-    {
       "id": "3",
       "SME_NOMBRE": "Supermercado C",
       "SME_DIRECCION": "Plaza Comercial 789"
@@ -21,9 +16,183 @@
       "id": "aa29"
     },
     {
-      "id": "4a0d",
-      "SME_NOMBRE": "prueba",
-      "SME_DIRECCION": "FASDFASD"
+      "SME_NOMBRE": "prueba2",
+      "SME_DIRECCION": "FASDFASD",
+      "id": "4a0d"
+    }
+  ],
+  "PAS_PASILLO": [
+    {
+      "id": "1",
+      "PAS_IDARA": 101,
+      "PAS_DESCRIPCION": "Lácteos y Embutidos"
+    },
+    {
+      "id": "2",
+      "PAS_IDARA": 102,
+      "PAS_DESCRIPCION": "Frutas y Verduras"
+    },
+    {
+      "id": "3",
+      "PAS_IDARA": 103,
+      "PAS_DESCRIPCION": "Carnes y Pescados"
+    },
+    {
+      "PAS_IDARA": "106",
+      "PAS_DESCRIPCION": "Bebidas y Licores test",
+      "id": "5"
+    },
+    {
+      "id": "dce6",
+      "PAS_IDARA": "2",
+      "PAS_DESCRIPCION": "test"
+    }
+  ],
+  "PRO_PROVEEDORES": [
+    {
+      "id": "1",
+      "PRO_NOMBRE": "Distribuidora Central",
+      "PRO_CORREO": "contacto@dcentral.com"
+    },
+    {
+      "id": "2",
+      "PRO_NOMBRE": "Alimentos del Sur",
+      "PRO_CORREO": "ventas@alimentosdelsur.com"
+    },
+    {
+      "id": "3",
+      "PRO_NOMBRE": "Importadora Norte",
+      "PRO_CORREO": "info@importadoranorte.com"
+    },
+    {
+      "PRO_NOMBRE": "Bebidas y Licores Ltda. test",
+      "PRO_CORREO": "contacto@bebidasylicores.com.test",
+      "id": "5"
+    },
+    {
+      "id": "0d73",
+      "PRO_NOMBRE": "test",
+      "PRO_CORREO": "test"
+    }
+  ],
+  "USR_USUARIO": [
+    {
+      "id": "1",
+      "USR_IDPEF": 2001,
+      "USR_NOMBRE": "Carlos Hernández",
+      "USR_CORREO": "carlos.hernandez@mail.com"
+    },
+    {
+      "id": "2",
+      "USR_IDPEF": 2002,
+      "USR_NOMBRE": "María López",
+      "USR_CORREO": "maria.lopez@mail.com"
+    },
+    {
+      "id": "3",
+      "USR_IDPEF": 2003,
+      "USR_NOMBRE": "Juan Pérez",
+      "USR_CORREO": "juan.perez@mail.com"
+    },
+    {
+      "USR_IDPEF": "25",
+      "USR_NOMBRE": "Andrés Martínez test",
+      "USR_CORREO": "testandres.martinez@mail.com",
+      "id": "5"
+    },
+    {
+      "id": "0dc8",
+      "USR_IDPEF": "2",
+      "USR_NOMBRE": "fercho",
+      "USR_CORREO": "fercho"
+    }
+  ],
+  "PUE_PUESTO": [
+    {
+      "id": "1",
+      "PUE_DESCRIPCION": "Gerente General"
+    },
+    {
+      "id": "2",
+      "PUE_DESCRIPCION": "Jefe de Ventas"
+    },
+    {
+      "id": "3",
+      "PUE_DESCRIPCION": "Supervisor de Inventario"
+    },
+    {
+      "id": "4",
+      "PUE_DESCRIPCION": "Cajero"
+    },
+    {
+      "PUE_DESCRIPCION": "Auxiliar de Bodega test",
+      "id": "5"
+    }
+  ],
+  "CAT_CATEGORIA": [
+    {
+      "id": "1",
+      "CAT_DESCRIPCION": "Lácteos"
+    },
+    {
+      "id": "2",
+      "CAT_DESCRIPCION": "Frutas y Verduras"
+    },
+    {
+      "id": "3",
+      "CAT_DESCRIPCION": "Carnes y Pescados"
+    },
+    {
+      "CAT_DESCRIPCION": "Panadería test",
+      "id": "4"
+    },
+    {
+      "id": "8748",
+      "CAT_DESCRIPCION": "test"
+    }
+  ],
+  "UNI_UNIDADMEDIDA": [
+    {
+      "id": "1",
+      "UNI_DESCRIPCION": "Kilogramos"
+    },
+    {
+      "id": "2",
+      "UNI_DESCRIPCION": "Litros"
+    },
+    {
+      "id": "3",
+      "UNI_DESCRIPCION": "Unidades"
+    },
+    {
+      "UNI_DESCRIPCION": "Piezas test",
+      "id": "5"
+    },
+    {
+      "id": "c63f",
+      "UNI_DESCRIPCION": "test"
+    }
+  ],
+  "ARA_AREA": [
+    {
+      "id": "1",
+      "ARA_DESCRIPCION": "Alimentos"
+    },
+    {
+      "id": "2",
+      "ARA_DESCRIPCION": "Bebidas"
+    },
+    {
+      "id": "3",
+      "ARA_DESCRIPCION": "Higiene Personal"
+    },
+    {
+      "ARA_DESCRIPCION": "Limpieza2",
+      "id": "4"
+    },
+    {
+      "id": "5aa2",
+      "ARA_DESCRIPCION": "test"
     }
   ]
 }

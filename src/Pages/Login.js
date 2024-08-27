@@ -34,7 +34,8 @@ function Login() {
                       Remember password
                     </label>
                   </div>
-                  <Link style={{ textDecoration: "none" }} to={"/dashboardAdmin"}>
+                  {/* <Link style={{ textDecoration: "none" }} to={"/dashboardAdmin"}> */}
+                  <Link style={{ textDecoration: "none" }} to={"/dashboardCajero"}>
                   <button className="btn btn-primary btn-lg btn-block" >
                     Login
                   </button>

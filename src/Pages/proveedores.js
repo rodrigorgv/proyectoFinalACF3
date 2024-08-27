@@ -1,3 +1,5 @@
+//este es el codigo
+
 import React, { useState, useEffect } from 'react';
 import NavbarAdminComponent from '../Components/NavbarAdminComponent';
 import TableComponent from '../Components/TableComponent';
@@ -5,14 +7,14 @@ import apiService from '../services/services';
 import Swal from 'sweetalert2';
 
 
-const Proveedores = () => {
-  const [Proveedores, setProveedores] = useState([]);
+const Proveedor = () => {
+  const [Proveedor, setProveedor] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const dataProveedores = await apiService.getProveedores();
-        setProveedores(dataProveedores);
+        setProveedor(dataProveedores);
 
       } catch (error) {
         console.error('Error al obtener datos:', error);
@@ -32,10 +34,10 @@ const Proveedores = () => {
 
   //metodos para sweetalert
 
-  const handleModificarProveedores = async (id) => {
+  const handleModificarProveedor = async (id) => {
     try {          
-      const proveedoresPorId = await apiService.getProveedoresId(id);
-      console.log(proveedoresPorId);
+      const proveedorPorId = await apiService.getProveedorId(id);
+      console.log(proveedorPorId);
       //***ojo ojo---aca deben de añadir todos los nuevos campos que les corresponden, deben de añadir 1 label y un input por campo.  */
       Swal.fire({
         title: 'Modificar Proveedor',
@@ -43,11 +45,11 @@ const Proveedores = () => {
           <div style="text-align: left;">
             <label for="nombre_pro">Nombre Proveedor:</label>
             <br/>
-            <input type="Text" id="nombre_pro" class="swal2-input" placeholder="Ingrese el nombre" value="${proveedoresPorId.PRO_NOMBRE}">
+            <input type="Text" id="nombre_pro" class="swal2-input" placeholder="Ingrese el nombre" value="${proveedorPorId.PRO_NOMBRE}">
             <br/>
             <label for="correo_pro">Correo Proveedor:</label>
             <br/>
-            <input type="Text" id="correo_pro" class="swal2-input" placeholder="Ingrese la direccion" value="${proveedoresPorId.PRO_CORREO}">            
+            <input type="Text" id="correo_pro" class="swal2-input" placeholder="Ingrese el correo" value="${proveedorPorId.PRO_CORREO}">            
           </div>       
         `,
         icon: 'info',
@@ -63,7 +65,7 @@ const Proveedores = () => {
           const correo_pro = Swal.getPopup().querySelector('#correo_pro').value;
 
           // Llamar a la función para actualizar el super
-          apiService.updateProveedores(id, {
+          apiService.updateProveedor(id, {
             PRO_NOMBRE: nombre_pro,           
             PRO_CORREO: correo_pro
           });
@@ -72,7 +74,7 @@ const Proveedores = () => {
         if (result.isConfirmed) {
           Swal.fire('Actualización confirmada', '', 'success');
           const dataProveedores = await apiService.getProveedores();
-          setProveedores(dataProveedores);
+          setProveedor(dataProveedores);
         }
       });
     } catch (error) {
@@ -87,7 +89,7 @@ const Proveedores = () => {
     }
   };
 
-  const handleEliminarProveedores = (id) => {
+  const handleEliminarProveedor = (id) => {
     Swal.fire({
       title: '¿Estás seguro?',
       text: '¿Quieres eliminar este Proveedor?',
@@ -99,21 +101,21 @@ const Proveedores = () => {
       cancelButtonText: 'Cancelar'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await apiService.deleteProveedores(id);
+        await apiService.deleteProveedor(id);
         const dataProveedores = await apiService.getProveedores();
-        setProveedores(dataProveedores);
-        console.log('Proveedor eliminado');
+        setProveedor(dataProveedores);
+        console.log('proveedor eliminado');
       }
     });
   };
 
-  const handlePostProveedores = async () => {
+  const handlePostProveedor = async () => {
     //***ojo ojo---aca deben de añadir todos los nuevos campos que les corresponden, deben de añadir 1 label y un input por campo.  */
     Swal.fire({
       title: 'Crear Proveedor',
       html: `
       <div style="text-align: left;">
-      <label for="PRO_NOMBREr">Nombre PROVEEDOR:</label>
+      <label for="PRO_NOMBREr">Nombre Proveedor:</label>
       <br/>
       <input type="text" id="PRO_NOMBRE" class="swal2-input" placeholder="Ingrese el nombre">
       <br/>
@@ -142,7 +144,7 @@ const Proveedores = () => {
             });
             Swal.fire('Creación exitosa', 'El nuevo proveedor ha sido creado.', 'success');
             const dataProveedores = await apiService.getProveedores();
-            setProveedores(dataProveedores);
+            setProveedor(dataProveedores);
           } catch (error) {
             console.error('Error al crear el proveedor:', error);
             Swal.fire('Error', 'No se pudo crear el nuevo proveedor.', 'error');
@@ -155,8 +157,8 @@ const Proveedores = () => {
   //fin metodos sweetalert 
   const accionesBotones = (row) => (
     <div className="opcionesBTN">
-      <button type="button" className="btn btn-outline-primary custom-tooltip" data-toggle="tooltip" data-placement="top" title="Tooltip on top" onClick={() => handleModificarProveedores(row.id)}><i className="fa-solid fa-pen"></i></button>
-      <button type="button" className="btn btn-outline-danger" onClick={() => handleEliminarProveedores(row.id)}><i className="fa-solid fa-trash"></i></button>
+      <button type="button" className="btn btn-outline-primary custom-tooltip" data-toggle="tooltip" data-placement="top" title="Tooltip on top" onClick={() => handleModificarProveedor(row.id)}><i className="fa-solid fa-pen"></i></button>
+      <button type="button" className="btn btn-outline-danger" onClick={() => handleEliminarProveedor(row.id)}><i className="fa-solid fa-trash"></i></button>
     </div>
   );
 
@@ -194,15 +196,15 @@ const Proveedores = () => {
       </div>
       <div class="alineaDerecha ">
         <div className="alineaDerecha">
-          <button type="button" className="btn btn-outline-success " onClick={() => handlePostProveedores()}>
-            <i className="fa-solid fa-plus"></i> Crear Proveedores
+          <button type="button" className="btn btn-outline-success " onClick={() => handlePostProveedor()}>
+            <i className="fa-solid fa-plus"></i> Crear Proveedor
           </button>
         </div>
       </div>
-      <TableComponent datostabla={Proveedores} columnas={columnas} />
+      <TableComponent datostabla={Proveedor} columnas={columnas} />
     </div>
 
   );
 };
 
-export default Proveedores;
+export default Proveedor;

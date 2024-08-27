@@ -11,6 +11,10 @@ import Puesto from './Pages/puesto';
 import Categoria from './Pages/categoria';
 import UnidadMedida from './Pages/unidadMedida';
 import Area from './Pages/area';
+import Cliente from './Pages/cliente';
+import DashboardCajero from './Pages/dashboardCajero';
+import Venta from './Pages/venta';
+import CajasCobro from './Pages/cajasCobro';
 
 function App() {
   return (
@@ -27,7 +31,11 @@ function App() {
             <Route path="/consultaCategoria" element={<Categoria />} />
             <Route path="/consultaUnidadMedida" element={<UnidadMedida />} />
             <Route path="/consultaArea" element={<Area />} />
+            <Route path="/consultaCliente" element={<Cliente />} />
+            <Route path="/venta" element={<Venta />} />
+            <Route path="/consultaCajasCobro" element={<CajasCobro />} />
             <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
+            <Route path="/dashboardCajero" element={<DashboardCajero />} />
         </Routes>    
       </Router>
     </div>

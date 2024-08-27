@@ -9,6 +9,8 @@ const urlPUE = 'http://localhost:3000/PUE_PUESTO'
 const urlCAT = 'http://localhost:3000/CAT_CATEGORIA'
 const urlUNI = 'http://localhost:3000/UNI_UNIDADMEDIDA'
 const urlARA = 'http://localhost:3000/ARA_AREA'
+const urlCLI = 'http://localhost:3000/CLI_CLIENTE'
+const urlCAC = 'http://localhost:3000/CAC_CAJASCOBRO'
 
 const apiService = {
 
@@ -126,7 +128,7 @@ const apiService = {
 
   //TRAE 1 Proveedores POR ID
 
-  getProveedoresId: async (id) => {
+  getProveedorId: async (id) => {
     try {
       const response = await axios.get(`${urlPRO}/${id}`);
       return response.data;
@@ -148,7 +150,7 @@ const apiService = {
   },
 
   //ACTUALIZA 1 Proveedores
-  updateProveedores: async (id, newData) => {
+  updateProveedor: async (id, newData) => {
     try {
       const response = await axios.put(`${urlPRO}/${id}`, newData);
       console.log(response);
@@ -158,7 +160,7 @@ const apiService = {
   },
 
   //ELIMINA 1 Proveedores  
-  deleteProveedores: async (id) => {
+  deleteProveedor: async (id) => {
     const response = await axios.delete(`${urlPRO}/${id}`);
     console.log(response);
   },  
@@ -412,6 +414,105 @@ const apiService = {
     const response = await axios.delete(`${urlARA}/${id}`);
     console.log(response);
   },    
+////////////////////////// CLIENTE //////////////////////////
+  //TRAE TODOS LOS ClienteS    
+  getClientes: async () => {
+    try {
+      const response = await axios.get(urlCLI);
+      return response.data;
+    } catch (error) {
+      console.error('Error al realizar la consulta:', error);
+    }
+  },
+
+  //TRAE 1 Cliente POR ID
+
+  getClienteId: async (id) => {
+    try {
+      const response = await axios.get(`${urlCLI}/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error al consultar el Cliente por ID:', error);
+      throw error;
+    }
+  },
+
+  //CREA 1 Cliente  
+  postCliente: async (nuevoCliente) => {
+    try {
+      const response = await axios.post(urlCLI, nuevoCliente);
+      console.log('Nuevo Cliente creado:', response.data);
+    } catch (error) {
+      console.error('Error al crear el Cliente:', error);
+      throw error;
+    }
+  },
+
+  //ACTUALIZA 1 Cliente
+  updateCliente: async (id, newData) => {
+    try {
+      const response = await axios.put(`${urlCLI}/${id}`, newData);
+      console.log(response);
+    } catch (error) {
+      console.error('Error al actualizar el Cliente:', error);
+    }
+  },
+
+  //ELIMINA 1 Cliente  
+  deleteCliente: async (id) => {
+    const response = await axios.delete(`${urlCLI}/${id}`);
+    console.log(response);
+  },      
+
+////////////////////////// CAJAS COBRO //////////////////////////
+  //TRAE TODOS LOS CajasCobroS    
+  getCajasCobro: async () => {
+    try {
+      const response = await axios.get(urlCAC);
+      return response.data;
+    } catch (error) {
+      console.error('Error al realizar la consulta:', error);
+    }
+  },
+
+  //TRAE 1 CajasCobro POR ID
+
+  getCajasCobroId: async (id) => {
+    try {
+      const response = await axios.get(`${urlCAC}/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error al consultar el CajasCobro por ID:', error);
+      throw error;
+    }
+  },
+
+  //CREA 1 CajasCobro  
+  postCajasCobro: async (nuevoCajasCobro) => {
+    try {
+      const response = await axios.post(urlCAC, nuevoCajasCobro);
+      console.log('Nuevo CajasCobro creado:', response.data);
+    } catch (error) {
+      console.error('Error al crear el CajasCobro:', error);
+      throw error;
+    }
+  },
+
+  //ACTUALIZA 1 CajasCobro
+  updateCajasCobro: async (id, newData) => {
+    try {
+      const response = await axios.put(`${urlCAC}/${id}`, newData);
+      console.log(response);
+    } catch (error) {
+      console.error('Error al actualizar el CajasCobro:', error);
+    }
+  },
+
+  //ELIMINA 1 CajasCobro  
+  deleteCajasCobro: async (id) => {
+    const response = await axios.delete(`${urlCAC}/${id}`);
+    console.log(response);
+  },  
   
 }
 

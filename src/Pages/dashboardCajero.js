@@ -1,56 +1,27 @@
 import React from 'react'
-import NavbarAdminComponent from '../Components/NavbarAdminComponent';
 import CardComponent from '../Components/CardComponent';
+import NavbarCajeroComponent from '../Components/NavbarCajeroComponent';
 
-const DashboardAdmin = () => {
+const DashboardCajero = () => {
     return (
     <div>
-      <NavbarAdminComponent />
+      <NavbarCajeroComponent />
         <div className="container-fluid">
             <div className="titulo">
-                <h1>Cajero Dashboard SUPERMK</h1>
+                <h1>Cajero #999 | SUPERMK</h1>
                 <h3>Bienvenido JUAN PEREZ</h3>
             </div>
         
-            <div className="row">
+            <div className="d-flex justify-content-center">
                 <CardComponent
-                    title="SuperMercados"
-                    iconClass="fa-solid fa-store"
+                    title="Registrar Venta"
+                    iconClass="fas fa-cart-plus"
                     quantity={99999}
-                    enlace={"/consultaSuperMercado"}
+                    enlace={"/venta"}
                     tipoTexto={"text-success"}
                     tipoBorde={"border-left-success"}
                 />
-
-                <CardComponent
-                    title="Personal"
-                    iconClass="fa-solid fa-person"
-                    quantity={99999}
-                    enlace={"/consultaSuperMercado"}
-                    tipoTexto={"text-warning"}
-                    tipoBorde={"border-left-warning"}
-                />          
-
-                <CardComponent
-                    title="Proveedores"
-                    
-                    iconClass="fa-solid fa-warehouse"
-                    quantity={99999}
-                    enlace={"/consultaSuperMercado"}
-                    tipoTexto={"text-danger"}
-                    tipoBorde={"border-left-danger"}
-                />           
-
-
-                <CardComponent
-                    title="Articulos"
-                    
-                    iconClass="fa-solid fa-box"
-                    quantity={99999}
-                    enlace={"/consultaSuperMercado"}
-                    tipoTexto={"text-primary"}
-                    tipoBorde={"border-left-primary"}
-                />                                    
+                               
             </div>      
               
         </div>
@@ -58,4 +29,4 @@ const DashboardAdmin = () => {
     );
   }
   
-  export default DashboardAdmin;
+  export default DashboardCajero;

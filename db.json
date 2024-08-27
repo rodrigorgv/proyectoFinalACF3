@@ -24,28 +24,28 @@
   "PAS_PASILLO": [
     {
       "id": "1",
-      "PAS_IDARA": 101,
+      "PAS_IDARA": "2",
       "PAS_DESCRIPCION": "Lácteos y Embutidos"
     },
     {
       "id": "2",
-      "PAS_IDARA": 102,
+      "PAS_IDARA": "3",
       "PAS_DESCRIPCION": "Frutas y Verduras"
     },
     {
       "id": "3",
-      "PAS_IDARA": 103,
+      "PAS_IDARA": "4",
       "PAS_DESCRIPCION": "Carnes y Pescados"
-    },
-    {
-      "PAS_IDARA": "106",
-      "PAS_DESCRIPCION": "Bebidas y Licores test",
-      "id": "5"
     },
     {
       "id": "dce6",
       "PAS_IDARA": "2",
       "PAS_DESCRIPCION": "test"
+    },
+    {
+      "id": "dde6",
+      "PAS_IDARA": "3",
+      "PAS_DESCRIPCION": "test2"
     }
   ],
   "PRO_PROVEEDORES": [
@@ -65,14 +65,9 @@
       "PRO_CORREO": "info@importadoranorte.com"
     },
     {
-      "PRO_NOMBRE": "Bebidas y Licores Ltda. test",
-      "PRO_CORREO": "contacto@bebidasylicores.com.test",
-      "id": "5"
-    },
-    {
-      "id": "0d73",
-      "PRO_NOMBRE": "test",
-      "PRO_CORREO": "test"
+      "id": "5a12",
+      "PRO_NOMBRE": "test2",
+      "PRO_CORREO": "test2"
     }
   ],
   "USR_USUARIO": [
@@ -193,6 +188,70 @@
     {
       "id": "5aa2",
       "ARA_DESCRIPCION": "test"
+    }
+  ],
+  "CLI_CLIENTE": [
+    {
+      "id": "1",
+      "CLI_NOMBRE": "Laura Gómez",
+      "CLI_CORREO": "laura.gomez@mail.com",
+      "CLI_NIT": 12345678
+    },
+    {
+      "id": "2",
+      "CLI_NOMBRE": "Miguel Torres",
+      "CLI_CORREO": "miguel.torres@mail.com",
+      "CLI_NIT": 87654321
+    },
+    {
+      "id": "3",
+      "CLI_NOMBRE": "Ana Martínez",
+      "CLI_CORREO": "ana.martinez@mail.com",
+      "CLI_NIT": 11223344
+    },
+    {
+      "id": "4",
+      "CLI_NOMBRE": "Jorge Rivera",
+      "CLI_CORREO": "jorge.rivera@mail.com",
+      "CLI_NIT": 44332211
+    },
+    {
+      "CLI_NOMBRE": "Sofía Herrera24",
+      "CLI_CORREO": "sofia.herrera@mail.com24",
+      "CLI_NIT": "1231234",
+      "id": "5"
+    }
+  ],
+  "CAC_CAJASCOBRO": [
+    {
+      "id": "1",
+      "CAC_IDSME": 1,
+      "CAC_IDEMP": 1,
+      "CAC_NO_CAJA": "Caja 1"
+    },
+    {
+      "id": "2",
+      "CAC_IDSME": 2,
+      "CAC_IDEMP": 2,
+      "CAC_NO_CAJA": "Caja 2"
+    },
+    {
+      "id": "3",
+      "CAC_IDSME": 3,
+      "CAC_IDEMP": 3,
+      "CAC_NO_CAJA": "Caja 3"
+    },
+    {
+      "CAC_IDSME": "2",
+      "CAC_IDEMP": "2",
+      "CAC_NO_CAJA": "Caja 5 TEST",
+      "id": "5"
+    },
+    {
+      "id": "1267",
+      "CAC_IDSME": "22",
+      "CAC_IDEMP": "22",
+      "CAC_NO_CAJA": "TEST2"
     }
   ]
 }

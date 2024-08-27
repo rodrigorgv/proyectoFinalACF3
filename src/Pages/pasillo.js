@@ -6,12 +6,16 @@ import Swal from 'sweetalert2';
 
 const Pasillo = () => {
   const [pasillos, setPasillos] = useState([]);
+  const [areas, setAreas] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const dataPasillos = await apiService.getPasillos();
         setPasillos(dataPasillos);
+
+        const dataAreas = await apiService.getAreas();
+        setAreas(dataAreas);
 
       } catch (error) {
         console.error('Error al obtener datos:', error);
@@ -27,23 +31,30 @@ const Pasillo = () => {
     fetchData();
   }, []);
 
+  const renderSelectOptions = (selectedId) => {
+    return areas.map((option) => (
+      `<option value="${option.id}" ${String(option.id) === String(selectedId) ? 'selected' : ''}>${option.ARA_DESCRIPCION}</option>`
+    )).join('');
+  };
+  
   const handleModificarPasillo = async (id) => {
-    try {          
+    try {
       const pasilloPorId = await apiService.getPasilloId(id);
-      console.log(pasilloPorId);
-
+  
       Swal.fire({
         title: 'Modificar Pasillo',
         html: `
           <div style="text-align: left;">
-            <label for="pas_idara">ID Ara:</label>
+            <label for="pas_idara">Area:</label>
             <br/>
-            <input type="number" id="pas_idara" class="swal2-input" placeholder="Ingrese el ID Ara" value="${pasilloPorId.PAS_IDARA}">
+            <select id="pas_area" class="swal2-select">
+              ${renderSelectOptions(pasilloPorId.PAS_IDARA)}
+            </select>
             <br/>
             <label for="pas_descripcion">Descripción:</label>
             <br/>
-            <input type="text" id="pas_descripcion" class="swal2-input" placeholder="Ingrese la descripción" value="${pasilloPorId.PAS_DESCRIPCION}">            
-          </div>       
+            <input type="text" id="pas_descripcion" class="swal2-input" placeholder="Ingrese la descripción" value="${pasilloPorId.PAS_DESCRIPCION}">
+          </div>
         `,
         icon: 'info',
         showCancelButton: true,
@@ -52,14 +63,14 @@ const Pasillo = () => {
         confirmButtonText: 'Actualizar',
         cancelButtonText: 'Cancelar',
         preConfirm: () => {
-          const pas_idara = Swal.getPopup().querySelector('#pas_idara').value;
+          const pas_idara = Swal.getPopup().querySelector('#pas_area').value;
           const pas_descripcion = Swal.getPopup().querySelector('#pas_descripcion').value;
-
+  
           apiService.updatePasillo(id, {
             PAS_IDARA: pas_idara,
-            PAS_DESCRIPCION: pas_descripcion
+            PAS_DESCRIPCION: pas_descripcion,
           });
-        }
+        },
       }).then(async (result) => {
         if (result.isConfirmed) {
           Swal.fire('Actualización confirmada', '', 'success');
@@ -78,6 +89,7 @@ const Pasillo = () => {
       });
     }
   };
+  
 
   const handleEliminarPasillo = (id) => {
     Swal.fire({
@@ -104,9 +116,11 @@ const Pasillo = () => {
       title: 'Crear Pasillo',
       html: `
       <div style="text-align: left;">
-        <label for="pas_idara">ID Ara:</label>
-        <br/>
-        <input type="number" id="pas_idara" class="swal2-input" placeholder="Ingrese el ID Ara">
+        <label for="pas_idara">Area:</label>
+        <br/>        
+        <select id="pas_area" class="swal2-select">
+        ${areas.map(option => `<option value="${option.id}" ${option.id === pasillos.PAS_IDARA ? 'selected' : ''}>${option.ARA_DESCRIPCION}</option>`).join('')}
+        </select>        
         <br/>
         <label for="pas_descripcion">Descripción:</label>
         <br/>
@@ -121,7 +135,7 @@ const Pasillo = () => {
       confirmButtonText: 'Crear',
       cancelButtonText: 'Cancelar',
       preConfirm: async () => {
-        const pas_idara = Swal.getPopup().querySelector('#pas_idara').value;
+        const pas_idara = Swal.getPopup().querySelector('#pas_area').value;
         const pas_descripcion = Swal.getPopup().querySelector('#pas_descripcion').value;
 
         try {
@@ -147,6 +161,13 @@ const Pasillo = () => {
     </div>
   );
 
+  const areaDescripcion = (idArea) => {
+    const desc = areas.find(e => e.id === idArea)
+    return desc ? desc.ARA_DESCRIPCION : 'Desconocido';
+  }
+
+
+
   const columnas = [
     {
       name: 'ID Pasillo',
@@ -154,15 +175,15 @@ const Pasillo = () => {
       sortable: true,
     },
     {
-      name: 'ID Ara',
-      selector: row => row.PAS_IDARA,
+      name: 'Area',
+      selector: row => areaDescripcion(row.PAS_IDARA),
       sortable: true,
     },
     {
       name: 'Descripción',
       selector: row => row.PAS_DESCRIPCION,
       sortable: true,
-    },  
+    },
     {
       name: 'Acciones',
       cell: accionesBotones,

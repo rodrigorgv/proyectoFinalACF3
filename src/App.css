@@ -17,6 +17,10 @@
   width: 100%;
 }
 
+.camarita{
+  width: 300px;
+}
+
 .alineaDerecha {
   display: flex;
   justify-content: flex-end;

@@ -73,33 +73,38 @@
   "USR_USUARIO": [
     {
       "id": "1",
-      "USR_IDPEF": 2001,
+      "USR_IDPEF": 1,
       "USR_NOMBRE": "Carlos Hernández",
-      "USR_CORREO": "carlos.hernandez@mail.com"
+      "USR_CORREO": "carlos.hernandez@mail.com",
+      "USR_CONTRASENA": "admin"
     },
     {
       "id": "2",
-      "USR_IDPEF": 2002,
+      "USR_IDPEF": 1,
       "USR_NOMBRE": "María López",
-      "USR_CORREO": "maria.lopez@mail.com"
+      "USR_CORREO": "maria.lopez@mail.com",
+      "USR_CONTRASENA": "admin"
     },
     {
       "id": "3",
-      "USR_IDPEF": 2003,
+      "USR_IDPEF": 2,
       "USR_NOMBRE": "Juan Pérez",
-      "USR_CORREO": "juan.perez@mail.com"
+      "USR_CORREO": "juan.perez@mail.com",
+      "USR_CONTRASENA": "admin"
     },
     {
-      "USR_IDPEF": "25",
+      "USR_IDPEF": 2,
       "USR_NOMBRE": "Andrés Martínez test",
       "USR_CORREO": "testandres.martinez@mail.com",
-      "id": "5"
+      "id": "5",
+      "USR_CONTRASENA": "admin"
     },
     {
-      "id": "0dc8",
-      "USR_IDPEF": "2",
+      "id": "4",
+      "USR_IDPEF": 2,
       "USR_NOMBRE": "fercho",
-      "USR_CORREO": "fercho"
+      "USR_CORREO": "fercho",
+      "USR_CONTRASENA": "admin"
     }
   ],
   "PUE_PUESTO": [

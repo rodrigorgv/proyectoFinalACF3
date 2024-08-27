@@ -1,8 +1,56 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import apiService from '../services/services';
+import Swal from 'sweetalert2';
 
 function Login() {
+
+  const eliminaCookie = () => {
+    Cookies.remove('user');
+  }
+
+  
+  const navigate = useNavigate();
+  const [user, setUser] = useState([]);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const email = document.getElementById('InputEmail').value;
+    const password = document.getElementById('InputPassword').value;
+    const dataUsuarios = await apiService.getUsuarios();
+    setUser(dataUsuarios);
+    console.log({dataUsuarios});
+
+    const user = dataUsuarios.find(u => u.USR_CORREO === email && u.USR_CONTRASENA === password);
+    console.log({user});
+    if (user) {
+      // Grabar la cookie
+      Cookies.set('user', JSON.stringify({
+        email: user.usr_correo_usuario,
+        perfil: user.USR_IDPEF,
+        expid: user.usr_codexp
+      }), { expires: 1 }); // La cookie expirará en 1 día
+
+      if (user.USR_IDPEF === 1) {
+        navigate("/dashboardAdmin");
+      }
+      if (user.USR_IDPEF === 2) {
+        navigate("/DashboardCajero");
+      }
+
+    } else {
+      console.log({email,password,user})
+      Swal.fire('Error', 'Las Credenciales no son correctas', 'error');
+      console.error('Usuario no autenticado');
+    }
+
+
+  }
+
+  eliminaCookie();
+
   return (
     <div className="container">
       {/* <!-- Section: Design Block --> */}
@@ -10,18 +58,18 @@ function Login() {
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">
               <div className="card shadow-2-strong" style={{ borderRadius: '1rem' }}>
-                <div className="card-body p-5 text-center">
+                <form className="card-body p-5 text-center" onSubmit={handleSubmit}>
                   <h3 className="mb-5">Sign in</h3>
 
                   <div className="form-outline mb-4">
-                    <input type="email" id="typeEmailX-2" className="form-control form-control-lg" />
+                    <input type="email" id="InputEmail" className="form-control form-control-lg" />
                     <label className="form-label" htmlFor="typeEmailX-2">
                       Email
                     </label>
                   </div>
 
                   <div className="form-outline mb-4">
-                    <input type="password" id="typePasswordX-2" className="form-control form-control-lg" />
+                    <input type="password" id="InputPassword" className="form-control form-control-lg" />
                     <label className="form-label" htmlFor="typePasswordX-2">
                       Password
                     </label>
@@ -35,11 +83,11 @@ function Login() {
                     </label>
                   </div>
                   {/* <Link style={{ textDecoration: "none" }} to={"/dashboardAdmin"}> */}
-                  <Link style={{ textDecoration: "none" }} to={"/dashboardCajero"}>
+                  
                   <button className="btn btn-primary btn-lg btn-block" >
                     Login
                   </button>
-                  </Link>
+                  
 
                   <hr className="my-4" />
 
@@ -49,7 +97,7 @@ function Login() {
                   <button className="btn btn-lg btn-block btn-primary mb-2" style={{ backgroundColor: '#3b5998' }} type="submit">
                     <i className="fab fa-facebook-f me-2"></i> Sign in with facebook
                   </button>
-                </div>
+                </form>
               </div>
             </div>
           </div>

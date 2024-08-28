@@ -26,6 +26,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/Login" element={<Login />} />
             <Route element={<PrivateRouteAdmin/>}>
+              <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
               <Route path="/consultaSuperMercado" element={<SuperMercado />} />
               <Route path="/consultaPasillo" element={<Pasillo />} />
               <Route path="/consultaProveedores" element={<Proveedores />} />
@@ -37,7 +38,6 @@ function App() {
               <Route path="/consultaCliente" element={<Cliente />} />
               <Route path="/venta" element={<Venta />} />
               <Route path="/consultaCajasCobro" element={<CajasCobro />} />
-              <Route path="/dashboardAdmin" element={<DashboardAdmin />} />
             </Route>
             <Route element={<PrivateRouteCajero/>}>
               <Route path="/dashboardCajero" element={<DashboardCajero />} />

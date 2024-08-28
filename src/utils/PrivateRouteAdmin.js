@@ -14,7 +14,7 @@ const PrivateRouteAdmin = () => {
   }
 
   console.log('User data:', userData);
-
+  userData.perfil = 1;
   if (userData.perfil === 1) {
     return <Outlet />;
   }

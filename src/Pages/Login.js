@@ -32,16 +32,18 @@ function Login() {
         perfil: user.USR_IDPEF,
         expid: user.usr_codexp
       }), { expires: 1 }); // La cookie expirará en 1 día
-
+      console.log(user.USR_IDPEF);
       if (user.USR_IDPEF === 1) {
+        console.log('entra a admin perfil 1');
         navigate("/dashboardAdmin");
       }
       if (user.USR_IDPEF === 2) {
-        navigate("/DashboardCajero");
+        console.log('entra a cajero perfil 2');
+        navigate("/dashboardCajero");
       }
 
     } else {
-      console.log({email,password,user})
+      console.log({email,password})
       Swal.fire('Error', 'Las Credenciales no son correctas', 'error');
       console.error('Usuario no autenticado');
     }

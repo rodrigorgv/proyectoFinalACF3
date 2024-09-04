@@ -21,6 +21,10 @@
   width: 300px;
 }
 
+.ancho20rem{
+  width: 20rem;
+}
+
 .alineaDerecha {
   display: flex;
   justify-content: flex-end;

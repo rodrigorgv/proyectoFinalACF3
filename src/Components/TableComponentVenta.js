@@ -1,42 +1,28 @@
-import React from 'react'
+import React from 'react';
 
-export const TableComponentVenta = () => {
-  return (
-    <table class="table table-hover">
-    <thead>
-<tr>
-  <th scope="col">#</th>
-  <th scope="col">Producto</th>
-  <th scope="col">Cantidad</th>
-  <th scope="col">Valor unitario</th>
-  <th scope="col">Valor Total</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-  <th scope="row">1</th>
-  <td>Queso</td>
-  <td>2</td>
-  <td>4.5</td>
-  <td>9.0</td>
-</tr>
-<tr>
-  <th scope="row">2</th>
-  <td>Queso</td>
-  <td>2</td>
-  <td>4.5</td>
-  <td>9.0</td>
-</tr>
-<tr>
-  <th scope="row">3</th>
-  <td>Queso</td>
-  <td>2</td>
-  <td>4.5</td>
-  <td>9.0</td>
-</tr>
-</tbody>
-</table>
-  )
-}
+const TableComponentVenta = ({ productos }) => {
+    return (
+        <table className="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre del Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {productos.map((producto, index) => (
+                    <tr key={index}>
+                        <td>{producto.nombre}</td>
+                        <td>{producto.cantidad}</td>
+                        <td>{producto.precio.toFixed(2)}</td>
+                        <td>{producto.total.toFixed(2)}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    );
+};
 
 export default TableComponentVenta;

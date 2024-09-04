@@ -12,9 +12,6 @@ const DashboardCajero = () => {
                     <h1>Cajero #999 | SUPERMK</h1>
                     <h3>Bienvenido JUAN PEREZ</h3>
                 </div>
-                <div className='camarita '>
-                    <BarcodeScannerComponent />
-                </div>
                 <div className="d-flex justify-content-center">
                     <CardComponent
                         title="Registrar Venta"

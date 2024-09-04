@@ -112,10 +112,10 @@ const DashboardAdmin = () => {
                 <div className="row">
                 <span>Gestion de Personal y Clientes</span>
                     <CardComponent
-                        title="Personal"
+                        title="Empleado"
                         iconClass="fa-solid fa-person"
                         quantity={99999}
-                        enlace={"/consultaSuperMercado"}
+                        enlace={"/consultaEmpleado"}
                         tipoTexto={"text-warning"}
                         tipoBorde={"border-left-warning"}
                     />

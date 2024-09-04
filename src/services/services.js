@@ -11,6 +11,7 @@ const urlUNI = 'http://localhost:3000/UNI_UNIDADMEDIDA'
 const urlARA = 'http://localhost:3000/ARA_AREA'
 const urlCLI = 'http://localhost:3000/CLI_CLIENTE'
 const urlCAC = 'http://localhost:3000/CAC_CAJASCOBRO'
+const urlEMP = 'http://localhost:3000/EMP_EMPLEADO'
 
 const apiService = {
 
@@ -513,6 +514,56 @@ const apiService = {
     const response = await axios.delete(`${urlCAC}/${id}`);
     console.log(response);
   },  
+
+////////////////////////// EMPLEADO  //////////////////////////
+  //TRAE TODOS LOS EmpleadoS    
+  getEmpleados: async () => {
+    try {
+      const response = await axios.get(urlEMP);
+      return response.data;
+    } catch (error) {
+      console.error('Error al realizar la consulta:', error);
+    }
+  },
+
+  //TRAE 1 Empleado POR ID
+
+  getEmpleadoId: async (id) => {
+    try {
+      const response = await axios.get(`${urlEMP}/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error al consultar el Empleado por ID:', error);
+      throw error;
+    }
+  },
+
+  //CREA 1 Empleado  
+  postEmpleado: async (nuevoEmpleado) => {
+    try {
+      const response = await axios.post(urlEMP, nuevoEmpleado);
+      console.log('Nuevo Empleado creado:', response.data);
+    } catch (error) {
+      console.error('Error al crear el Empleado:', error);
+      throw error;
+    }
+  },
+
+  //ACTUALIZA 1 Empleado
+  updateEmpleado: async (id, newData) => {
+    try {
+      const response = await axios.put(`${urlEMP}/${id}`, newData);
+      console.log(response);
+    } catch (error) {
+      console.error('Error al actualizar el Empleado:', error);
+    }
+  },
+
+  //ELIMINA 1 Empleado  
+  deleteEmpleado: async (id) => {
+    const response = await axios.delete(`${urlEMP}/${id}`);
+    console.log(response);
+  },    
   
 }
 

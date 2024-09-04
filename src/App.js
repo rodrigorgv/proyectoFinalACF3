@@ -17,6 +17,7 @@ import Venta from './Pages/venta';
 import CajasCobro from './Pages/cajasCobro';
 import PrivateRouteAdmin from './utils/PrivateRouteAdmin';
 import PrivateRouteCajero from './utils/PrivateRouteCajero';
+import Empleado from './Pages/empleado';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
               <Route path="/consultaCliente" element={<Cliente />} />
               <Route path="/venta" element={<Venta />} />
               <Route path="/consultaCajasCobro" element={<CajasCobro />} />
+              <Route path="/consultaEmpleado" element={<Empleado />} />
             </Route>
             <Route element={<PrivateRouteCajero/>}>
               <Route path="/dashboardCajero" element={<DashboardCajero />} />

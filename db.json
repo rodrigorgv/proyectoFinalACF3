@@ -253,5 +253,31 @@
       "CAC_IDEMP": "22",
       "CAC_NO_CAJA": "TEST2"
     }
+  ],
+  "EMP_EMPLEADO": [
+    {
+      "id": "1",
+      "EMP_IDPUE": 1,
+      "EMP_IDUSR": 1,
+      "EMP_NOMBRE": "Carlos Ramírez"
+    },
+    {
+      "id": "2",
+      "EMP_IDPUE": 2,
+      "EMP_IDUSR": 2,
+      "EMP_NOMBRE": "María Fernández"
+    },
+    {
+      "id": "3",
+      "EMP_IDPUE": 3,
+      "EMP_IDUSR": 3,
+      "EMP_NOMBRE": "Luis González"
+    },
+    {
+      "EMP_IDPUE": "2",
+      "EMP_IDUSR": "2",
+      "EMP_NOMBRE": "Ana López2",
+      "id": "4"
+    }
   ]
 }

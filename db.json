@@ -4,16 +4,6 @@
       "id": "3",
       "SME_NOMBRE": "Supermercado C",
       "SME_DIRECCION": "Plaza Comercial 789"
-    },
-    {
-      "id": "4",
-      "SME_NOMBRE": "Supermercado D",
-      "SME_DIRECCION": "Carretera Panamericana Km 10"
-    },
-    {
-      "SME_NOMBRE": "test2",
-      "SME_DIRECCION": "test3",
-      "id": "aa29"
     }
   ],
   "PAS_PASILLO": [
@@ -45,9 +35,9 @@
   ],
   "PRO_PROVEEDORES": [
     {
-      "id": "1",
-      "PRO_NOMBRE": "Distribuidora Central",
-      "PRO_CORREO": "contacto@dcentral.com"
+      "PRO_NOMBRE": "test",
+      "PRO_CORREO": "contacto@dcentral.com",
+      "id": "1"
     },
     {
       "id": "2",
@@ -55,14 +45,14 @@
       "PRO_CORREO": "ventas@alimentosdelsur.com"
     },
     {
-      "id": "3",
       "PRO_NOMBRE": "Importadora Norte",
-      "PRO_CORREO": "info@importadoranorte.com"
+      "PRO_CORREO": "infoimporfasdftadoranorte.com",
+      "id": "3"
     },
     {
-      "id": "5a12",
-      "PRO_NOMBRE": "test2",
-      "PRO_CORREO": "test2"
+      "PRO_NOMBRE": "test",
+      "PRO_CORREO": "fasdf@gmail.com",
+      "id": "6605"
     }
   ],
   "USR_USUARIO": [
@@ -136,14 +126,6 @@
     {
       "id": "3",
       "CAT_DESCRIPCION": "Carnes y Pescados"
-    },
-    {
-      "CAT_DESCRIPCION": "Panadería test",
-      "id": "4"
-    },
-    {
-      "id": "8748",
-      "CAT_DESCRIPCION": "test"
     }
   ],
   "UNI_UNIDADMEDIDA": [
@@ -186,8 +168,8 @@
       "id": "4"
     },
     {
-      "id": "5aa2",
-      "ARA_DESCRIPCION": "test"
+      "id": "7b79",
+      "ARA_DESCRIPCION": "bebidas"
     }
   ],
   "CLI_CLIENTE": [

@@ -48,6 +48,17 @@ const Area = () => {
         preConfirm: () => {
           const descripcion_area = Swal.getPopup().querySelector('#descripcion_area').value;
 
+          if (!descripcion_area) {
+            Swal.showValidationMessage('Por favor, complete todos los campos.');
+            return false; // Evitar que se cierre el modal si hay campos vacíos
+          }          
+          
+          if (descripcion_area === areaPorId.ARA_DESCRIPCION ) {
+            Swal.showValidationMessage('Los campos son iguales. no se hará la modificación');
+            return false; // Evitar que se cierre el modal si hay campos vacíos
+          }                      
+
+
           apiService.updateArea(id, {
             ARA_DESCRIPCION: descripcion_area
           });
@@ -109,6 +120,17 @@ const Area = () => {
       cancelButtonText: 'Cancelar',
       preConfirm: async () => {
         const ara_descripcion = Swal.getPopup().querySelector('#ARA_DESCRIPCION').value;
+
+        if (!ara_descripcion) {
+          Swal.showValidationMessage('Por favor, complete todos los campos.');
+          return false; // Evitar que se cierre el modal si hay campos vacíos
+        } 
+
+      const areaExiste = areas.some(area => area.ARA_DESCRIPCION.toLowerCase() === ara_descripcion.toLowerCase());
+      if (areaExiste) {
+        Swal.showValidationMessage('El área  ya existe.');
+        return false; // Evitar que se cierre el modal si la categoría ya existe
+      }                             
 
         try {
           await apiService.postArea({

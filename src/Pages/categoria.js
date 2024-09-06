@@ -48,6 +48,16 @@ const Categoria = () => {
                 preConfirm: () => {
                     const cat_descripcion = Swal.getPopup().querySelector('#cat_descripcion').value;
 
+                    if (!cat_descripcion) {
+                        Swal.showValidationMessage('Por favor, complete todos los campos.');
+                        return false; // Evitar que se cierre el modal si hay campos vacíos
+                      }          
+                      
+                      if (cat_descripcion === CategoriaPorId.CAT_DESCRIPCION ) {
+                        Swal.showValidationMessage('Los campos son iguales. no se hará la modificación');
+                        return false; // Evitar que se cierre el modal si hay campos vacíos
+                      }                      
+
                     apiService.updateCategoria(id, {
                         CAT_DESCRIPCION: cat_descripcion
                     });
@@ -110,6 +120,18 @@ const Categoria = () => {
             cancelButtonText: 'Cancelar',
             preConfirm: async () => {
                 const cat_descripcion = Swal.getPopup().querySelector('#cat_descripcion').value;
+
+                if (!cat_descripcion) {
+                    Swal.showValidationMessage('Por favor, complete todos los campos.');
+                    return false; // Evitar que se cierre el modal si hay campos vacíos
+                  }
+
+      // Validación de que la categoría no exista ya
+      const categoriaExiste = Categorias.some(categoria => categoria.CAT_DESCRIPCION.toLowerCase() === cat_descripcion.toLowerCase());
+      if (categoriaExiste) {
+        Swal.showValidationMessage('La categoría ya existe.');
+        return false; // Evitar que se cierre el modal si la categoría ya existe
+      }                  
 
                 try {
                     await apiService.postCategoria({

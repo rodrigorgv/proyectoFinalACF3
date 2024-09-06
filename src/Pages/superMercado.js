@@ -59,13 +59,23 @@ const SuperMercado = () => {
         preConfirm: () => {
           // Obtener los valores de los inputs
           //*********ojo ojo---aca deben de añadir todos los nuevos campos que les corresponden, deben de añadir con # el nombre que pusieron en el ID de los input  */
-          const nombre_sme    = Swal.getPopup().querySelector('#nombre_sme').value;
-          const direccion_sme = Swal.getPopup().querySelector('#direccion_sme').value;
+          const sme_nombre    = Swal.getPopup().querySelector('#nombre_sme').value.trim();
+          const sme_direccion = Swal.getPopup().querySelector('#direccion_sme').value.trim();
+          
+          if (!sme_nombre || !sme_direccion) {
+            Swal.showValidationMessage('Por favor, complete todos los campos.');
+            return false; // Evitar que se cierre el modal si hay campos vacíos
+          }
+
+          if (sme_nombre === superMercadoPorId.SME_NOMBRE && sme_direccion === superMercadoPorId.SME_DIRECCION) {
+            Swal.showValidationMessage('Los campos son iguales. no se hará la modificación');
+            return false; // Evitar que se cierre el modal si hay campos vacíos
+          }
 
           // Llamar a la función para actualizar el super
           apiService.updateSuperMercado(id, {
-            SME_NOMBRE: nombre_sme,           
-            SME_DIRECCION: direccion_sme
+            SME_NOMBRE: sme_nombre,           
+            SME_DIRECCION: sme_direccion
           });
         }
       }).then(async (result) => {
@@ -130,10 +140,15 @@ const SuperMercado = () => {
       preConfirm: async () => {
         // Obtener los valores de los inputs
         //*********ojo ojo---aca deben de añadir todos los nuevos campos que les corresponden, deben de añadir con # el nombre que pusieron en el ID de los input  */
-        const sme_nombre = Swal.getPopup().querySelector('#SME_NOMBRE').value;
-        const sme_direccion = Swal.getPopup().querySelector('#SME_DIRECCION').value;
+        const sme_nombre = Swal.getPopup().querySelector('#SME_NOMBRE').value.trim();
+        const sme_direccion = Swal.getPopup().querySelector('#SME_DIRECCION').value.trim();
         //const camposValidos = validaCampos(codigo_exp, codigo_ppl, codigo_tdc, valor);
         // Crear el nuevo descuento
+
+        if (!sme_nombre || !sme_direccion) {
+          Swal.showValidationMessage('Por favor, complete todos los campos.');
+          return false; // Evitar que se cierre el modal si hay campos vacíos
+        }
 
           try {
             await apiService.postSuperMercado({

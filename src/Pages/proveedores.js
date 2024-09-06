@@ -64,6 +64,22 @@ const Proveedor = () => {
           const nombre_pro    = Swal.getPopup().querySelector('#nombre_pro').value;
           const correo_pro = Swal.getPopup().querySelector('#correo_pro').value;
 
+          if (!nombre_pro || !correo_pro) {
+            Swal.showValidationMessage('Por favor, complete todos los campos.');
+            return false; // Evitar que se cierre el modal si hay campos vacíos
+          }        
+
+          if (nombre_pro === proveedorPorId.PRO_NOMBRE && correo_pro === proveedorPorId.PRO_CORREO) {
+            Swal.showValidationMessage('Los campos son iguales. no se hará la modificación');
+            return false; // Evitar que se cierre el modal si hay campos vacíos
+          }          
+
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // Expresión regular para validar correos
+          if (!emailPattern.test(correo_pro)) {
+            Swal.showValidationMessage('Por favor, ingrese un correo electrónico válido.');
+            return false;
+          }          
+
           // Llamar a la función para actualizar el super
           apiService.updateProveedor(id, {
             PRO_NOMBRE: nombre_pro,           
@@ -119,7 +135,7 @@ const Proveedor = () => {
       <br/>
       <input type="text" id="PRO_NOMBRE" class="swal2-input" placeholder="Ingrese el nombre">
       <br/>
-      <input type="text" id="PRO_CORREO" class="swal2-input" placeholder="Ingrese el correo">
+      <input type="email" id="PRO_CORREO" class="swal2-input" placeholder="Ingrese el correo">
       <br/>      
     </div>
       `,
@@ -136,6 +152,17 @@ const Proveedor = () => {
         const pro_correo = Swal.getPopup().querySelector('#PRO_CORREO').value;
         //const camposValidos = validaCampos(codigo_exp, codigo_ppl, codigo_tdc, valor);
         // Crear el nuevo descuento
+
+        if (!pro_nombre || !pro_correo) {
+          Swal.showValidationMessage('Por favor, complete todos los campos.');
+          return false; // Evitar que se cierre el modal si hay campos vacíos
+        }        
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // Expresión regular para validar correos
+        if (!emailPattern.test(pro_correo)) {
+          Swal.showValidationMessage('Por favor, ingrese un correo electrónico válido.');
+          return false;
+        }        
 
           try {
             await apiService.postProveedor({

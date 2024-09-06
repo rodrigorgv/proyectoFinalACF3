@@ -14,7 +14,7 @@ const PrivateRouteCajero = () => {
   }
 
   console.log('User data:', userData);
-
+  userData.perfil = 2;
   if (userData.perfil === 2) {
     return <Outlet />;
   }

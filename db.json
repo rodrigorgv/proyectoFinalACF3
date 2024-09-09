@@ -26,11 +26,6 @@
       "id": "dce6",
       "PAS_IDARA": "2",
       "PAS_DESCRIPCION": "test"
-    },
-    {
-      "id": "dde6",
-      "PAS_IDARA": "3",
-      "PAS_DESCRIPCION": "test2"
     }
   ],
   "PRO_PROVEEDORES": [
@@ -122,17 +117,9 @@
     {
       "id": "2",
       "CAT_DESCRIPCION": "Frutas y Verduras"
-    },
-    {
-      "id": "3",
-      "CAT_DESCRIPCION": "Carnes y Pescados"
     }
   ],
   "UNI_UNIDADMEDIDA": [
-    {
-      "id": "1",
-      "UNI_DESCRIPCION": "Kilogramos"
-    },
     {
       "id": "2",
       "UNI_DESCRIPCION": "Litros"

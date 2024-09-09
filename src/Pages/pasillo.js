@@ -65,7 +65,23 @@ const Pasillo = () => {
         preConfirm: () => {
           const pas_idara = Swal.getPopup().querySelector('#pas_area').value;
           const pas_descripcion = Swal.getPopup().querySelector('#pas_descripcion').value;
-  
+          if (!pas_descripcion) {
+            Swal.showValidationMessage('Por favor, complete todos los campos.');
+            return false; // Evitar que se cierre el modal si hay campos vacíos
+          }
+
+        // Validación de duplicados (área + descripción)
+        const pasilloExiste = pasillos.some(
+          pasillo => 
+            pasillo.PAS_DESCRIPCION.toLowerCase() === pas_descripcion.toLowerCase() && 
+            pasillo.PAS_IDARA === parseInt(pas_idara)
+        );
+                  
+        if (pasilloExiste) {
+          Swal.showValidationMessage('El pasillo ya existe en esta área.');
+          return false; // Evitar que se cierre el modal si ya existe el pasillo en el área
+        }
+
           apiService.updatePasillo(id, {
             PAS_IDARA: pas_idara,
             PAS_DESCRIPCION: pas_descripcion,
@@ -115,18 +131,18 @@ const Pasillo = () => {
     Swal.fire({
       title: 'Crear Pasillo',
       html: `
-      <div style="text-align: left;">
-        <label for="pas_idara">Area:</label>
-        <br/>        
-        <select id="pas_area" class="swal2-select">
-        ${areas.map(option => `<option value="${option.id}" ${option.id === pasillos.PAS_IDARA ? 'selected' : ''}>${option.ARA_DESCRIPCION}</option>`).join('')}
-        </select>        
-        <br/>
-        <label for="pas_descripcion">Descripción:</label>
-        <br/>
-        <input type="text" id="pas_descripcion" class="swal2-input" placeholder="Ingrese la descripción">
-        <br/>      
-      </div>
+        <div style="text-align: left;">
+          <label for="pas_idara">Área:</label>
+          <br/>        
+          <select id="pas_area" class="swal2-select">
+          ${areas.map(option => `<option value="${option.id}" ${option.id === pasillos.PAS_IDARA ? 'selected' : ''}>${option.ARA_DESCRIPCION}</option>`).join('')}
+          </select>        
+          <br/>
+          <label for="pas_descripcion">Descripción:</label>
+          <br/>
+          <input type="text" id="pas_descripcion" class="swal2-input" placeholder="Ingrese la descripción">
+          <br/>      
+        </div>
       `,
       icon: 'info',
       showCancelButton: true,
@@ -137,15 +153,34 @@ const Pasillo = () => {
       preConfirm: async () => {
         const pas_idara = Swal.getPopup().querySelector('#pas_area').value;
         const pas_descripcion = Swal.getPopup().querySelector('#pas_descripcion').value;
-
+  
+        // Validación de campos vacíos
+        if (!pas_descripcion || !pas_idara) {
+          Swal.showValidationMessage('Por favor, complete todos los campos.');
+          return false; // Evitar que se cierre el modal si hay campos vacíos
+        }
+  
+        // Validación de duplicados (área + descripción)
+        const pasilloExiste = pasillos.some(
+          pasillo => 
+            pasillo.PAS_DESCRIPCION.toLowerCase() === pas_descripcion.toLowerCase() && 
+            pasillo.PAS_IDARA === parseInt(pas_idara)
+        );
+        
+        if (pasilloExiste) {
+          Swal.showValidationMessage('El pasillo ya existe en esta área.');
+          return false; // Evitar que se cierre el modal si ya existe el pasillo en el área
+        }
+  
         try {
+          // Si pasa las validaciones, crear el nuevo pasillo
           await apiService.postPasillo({
             PAS_IDARA: pas_idara,
             PAS_DESCRIPCION: pas_descripcion
           });
           Swal.fire('Creación exitosa', 'El nuevo pasillo ha sido creado.', 'success');
           const dataPasillos = await apiService.getPasillos();
-          setPasillos(dataPasillos);
+          setPasillos(dataPasillos); // Actualizar el estado con los pasillos más recientes
         } catch (error) {
           console.error('Error al crear el pasillo:', error);
           Swal.fire('Error', 'No se pudo crear el nuevo pasillo.', 'error');
@@ -153,6 +188,7 @@ const Pasillo = () => {
       }
     });
   };
+  
 
   const accionesBotones = (row) => (
     <div className="opcionesBTN">

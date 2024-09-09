@@ -50,6 +50,23 @@ const UnidadMedida = () => {
         preConfirm: () => {
           const uni_descripcion = Swal.getPopup().querySelector('#uni_descripcion').value;
 
+          if (!uni_descripcion) {
+            Swal.showValidationMessage('Por favor, complete todos los campos.');
+            return false; // Evitar que se cierre el modal si hay campos vacíos
+          }      
+
+          if (uni_descripcion === UnidadMedidaPorId.UNI_DESCRIPCION ) {
+            Swal.showValidationMessage('Los campos son iguales. no se hará la modificación');
+            return false; // Evitar que se cierre el modal si hay campos vacíos
+          }               
+    
+          // Validación de que la unidad medida no exista
+          const unidadMedidaExiste = UnidadesMedida.some(unidadMedida => unidadMedida.UNI_DESCRIPCION.toLowerCase() === uni_descripcion.toLowerCase());
+          if (unidadMedidaExiste) {
+            Swal.showValidationMessage('La unidad de medida ya existe.');
+            return false; // Evitar que se cierre el modal si la categoría ya existe
+          }        
+
           apiService.updateUnidadMedida(id, {
             UNI_DESCRIPCION: uni_descripcion
           });
@@ -112,6 +129,20 @@ const UnidadMedida = () => {
       cancelButtonText: 'Cancelar',
       preConfirm: async () => {
         const uni_descripcion = Swal.getPopup().querySelector('#uni_descripcion').value;
+
+     
+
+      if (!uni_descripcion) {
+        Swal.showValidationMessage('Por favor, complete todos los campos.');
+        return false; // Evitar que se cierre el modal si hay campos vacíos
+      }      
+
+      // Validación de que la unidad medida no exista
+      const unidadMedidaExiste = UnidadesMedida.some(unidadMedida => unidadMedida.UNI_DESCRIPCION.toLowerCase() === uni_descripcion.toLowerCase());
+      if (unidadMedidaExiste) {
+        Swal.showValidationMessage('La unidad de medida ya existe.');
+        return false; // Evitar que se cierre el modal si la categoría ya existe
+      }           
 
         try {
           await apiService.postUnidadMedida({

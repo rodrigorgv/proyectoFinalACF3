@@ -135,6 +135,8 @@ const Proveedor = () => {
       <br/>
       <input type="text" id="PRO_NOMBRE" class="swal2-input" placeholder="Ingrese el nombre">
       <br/>
+      <label for="PRO_NOMBREr">Correo Proveedor:</label>
+      <br/>
       <input type="email" id="PRO_CORREO" class="swal2-input" placeholder="Ingrese el correo">
       <br/>      
     </div>

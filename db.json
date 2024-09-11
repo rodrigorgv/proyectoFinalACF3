@@ -97,12 +97,12 @@
       "PUE_DESCRIPCION": "Jefe de Ventas"
     },
     {
-      "id": "3",
-      "PUE_DESCRIPCION": "Supervisor de Inventario"
+      "PUE_DESCRIPCION": " Jefe de Ventas",
+      "id": "3"
     },
     {
-      "id": "4",
-      "PUE_DESCRIPCION": "Cajero"
+      "PUE_DESCRIPCION": "Cajero",
+      "id": "4"
     },
     {
       "PUE_DESCRIPCION": "Auxiliar de Bodega test",
@@ -189,6 +189,12 @@
       "CLI_CORREO": "sofia.herrera@mail.com24",
       "CLI_NIT": "1231234",
       "id": "5"
+    },
+    {
+      "CLI_NOMBRE": "fasdf",
+      "CLI_CORREO": "fasdfasdf@gmail.com",
+      "CLI_NIT": "43242",
+      "id": "927b"
     }
   ],
   "CAC_CAJASCOBRO": [
@@ -243,10 +249,10 @@
       "EMP_NOMBRE": "Luis González"
     },
     {
-      "EMP_IDPUE": "2",
-      "EMP_IDUSR": "2",
-      "EMP_NOMBRE": "Ana López2",
-      "id": "4"
+      "id": "527d",
+      "EMP_IDPUE": "5",
+      "EMP_IDUSR": "1",
+      "EMP_NOMBRE": "Carlos"
     }
   ]
 }

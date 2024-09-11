@@ -47,6 +47,27 @@ const Puesto = () => {
         cancelButtonText: 'Cancelar',
         preConfirm: () => {
           const descripcion_puesto = Swal.getPopup().querySelector('#descripcion_puesto').value;
+        // Validación de campos vacíos
+        if (!descripcion_puesto) {
+          Swal.showValidationMessage('Por favor, complete todos los campos.');
+          return false; // Evitar que se cierre el modal si hay campos vacíos
+        }
+
+        if (descripcion_puesto === puestoPorId.PUE_DESCRIPCION ) {
+          Swal.showValidationMessage('Los campos son iguales. no se hará la modificación');
+          return false; // Evitar que se cierre el modal si hay campos vacíos
+        }        
+
+        // Validación de duplicados 
+        const puestoExiste = puestos.some(
+          puesto => 
+            puesto.PUE_DESCRIPCION.toLowerCase() === descripcion_puesto.toLowerCase()
+        );        
+
+        if (puestoExiste) {
+          Swal.showValidationMessage('El puesto ya existe.');
+          return false; // Evitar que se cierre el modal si ya existe el pasillo en el área
+        }
 
           apiService.updatePuesto(id, {
             PUE_DESCRIPCION: descripcion_puesto
@@ -109,6 +130,24 @@ const Puesto = () => {
       cancelButtonText: 'Cancelar',
       preConfirm: async () => {
         const pue_descripcion = Swal.getPopup().querySelector('#PUE_DESCRIPCION').value;
+
+        // Validación de campos vacíos
+        if (!pue_descripcion) {
+          Swal.showValidationMessage('Por favor, complete todos los campos.');
+          return false; // Evitar que se cierre el modal si hay campos vacíos
+        }        
+
+        // Validación de duplicados 
+        const puestoExiste = puestos.some(
+          puesto => 
+            puesto.PUE_DESCRIPCION.toLowerCase() === pue_descripcion.toLowerCase()
+        );        
+
+        if (puestoExiste) {
+          Swal.showValidationMessage('El puesto ya existe.');
+          return false; // Evitar que se cierre el modal si ya existe el pasillo en el área
+        }
+          
 
         try {
           await apiService.postPuesto({

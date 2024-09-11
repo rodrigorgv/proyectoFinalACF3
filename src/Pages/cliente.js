@@ -69,6 +69,30 @@ const Cliente = () => {
           const correo_cli = Swal.getPopup().querySelector('#correo_cli').value;
           const nit_cli = Swal.getPopup().querySelector('#nit_cli').value;
 
+
+          if (!nombre_cli || !correo_cli || !nit_cli) {
+            Swal.showValidationMessage('Por favor, complete todos los campos.');
+            return false; // Evitar que se cierre el modal si hay campos vacíos
+          }        
+  
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // Expresión regular para validar correos
+          if (!emailPattern.test(correo_cli)) {
+            Swal.showValidationMessage('Por favor, ingrese un correo electrónico válido.');
+            return false;
+          }        
+          if (nombre_cli === clientePorId.CLI_NOMBRE &&  correo_cli === clientePorId.CLI_CORREO && nit_cli === clientePorId.CLI_NIT) {
+            Swal.showValidationMessage('Los campos son iguales. no se hará la modificación');
+            return false; // Evitar que se cierre el modal si hay campos vacíos
+          }          
+  
+          const nitExiste = Cliente.some(cliente => cliente.CLI_NIT === nit_cli);
+          if (nitExiste) {
+            Swal.showValidationMessage('El Cliente ya existe.');
+            return false; // Evitar que se cierre el modal si la categoría ya existe
+          }      
+          
+  
+          
           // Llamar a la función para actualizar el super
           apiService.updateCliente(id, {
             CLI_NOMBRE: nombre_cli,           
@@ -128,7 +152,6 @@ const Cliente = () => {
       <label for="CLI_CORREO">correo Cliente:</label>
       <br/>
       <input type="text" id="CLI_CORREO" class="swal2-input" placeholder="Ingrese el correo">
-      <br/>      
       <br/>
       <label for="CLI_NIT">Nit Cliente:</label>
       <br/>
@@ -149,6 +172,24 @@ const Cliente = () => {
         const cli_nit = Swal.getPopup().querySelector('#CLI_NIT').value;
         //const camposValidos = validaCampos(codigo_exp, codigo_ppl, codigo_tdc, valor);
         // Crear el nuevo descuento
+
+        if (!cli_nombre || !cli_correo || !cli_nit) {
+          Swal.showValidationMessage('Por favor, complete todos los campos.');
+          return false; // Evitar que se cierre el modal si hay campos vacíos
+        }        
+
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;  // Expresión regular para validar correos
+        if (!emailPattern.test(cli_correo)) {
+          Swal.showValidationMessage('Por favor, ingrese un correo electrónico válido.');
+          return false;
+        }        
+
+        const nitExiste = Cliente.some(cliente => cliente.CLI_NIT === cli_nit);
+        if (nitExiste) {
+          Swal.showValidationMessage('El Cliente ya existe.');
+          return false; // Evitar que se cierre el modal si la categoría ya existe
+        }                  
+
 
           try {
             await apiService.postCliente({

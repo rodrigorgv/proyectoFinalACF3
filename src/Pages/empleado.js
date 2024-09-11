@@ -9,12 +9,20 @@ import Swal from 'sweetalert2';
 
 const Empleado = () => {
   const [Empleado, setEmpleado] = useState([]);
+  const [puestos, setPuestos] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const dataEmpleados = await apiService.getEmpleados();
         setEmpleado(dataEmpleados);
+
+        const dataPuestos = await apiService.getPuestos();
+        setPuestos(dataPuestos);        
+
+        const dataUsuarios = await apiService.getUsuarios();
+        setUsuarios(dataUsuarios);                
 
       } catch (error) {
         console.error('Error al obtener datos:', error);
@@ -43,9 +51,9 @@ const Empleado = () => {
         title: 'Modificar Empleado',
         html: `
           <div style="text-align: left;">
-			<label for="emp_idpue">ID PUE:</label>
+			<label for="emp_idpue">PUESTO:</label>
             <br/>
-            <input type="number" id="emp_idpue" class="swal2-input" placeholder="Ingrese el ID PUE" value="${empleadoPorId.EMP_IDPUE}">
+            <input type="number" id="emp_idpue" class="swal2-input" placeholder="Seleccione el puesto" value="${empleadoPorId.EMP_IDPUE}">
             <br/>
             <label for="emp_idusr">ID USR:</label>
             <br/>
@@ -68,7 +76,10 @@ const Empleado = () => {
           const emp_idpue = Swal.getPopup().querySelector('#emp_idpue').value;
           const emp_idusr = Swal.getPopup().querySelector('#emp_idusr').value;
 		  const nombre_emp    = Swal.getPopup().querySelector('#nombre_emp').value;
-
+      if (!emp_idpue || !emp_idusr || !nombre_emp) {
+        Swal.showValidationMessage('Por favor, complete todos los campos.');
+        return false; // Evitar que se cierre el modal si hay campos vacíos
+      }
           // Llamar a la función para actualizar el super
           apiService.updateEmpleado(id, {
             EMP_IDPUE: emp_idpue,
@@ -121,13 +132,17 @@ const Empleado = () => {
       title: 'Crear Empleado',
       html: `
       <div style="text-align: left;">
-	  <label for="EMP_IDPUE">ID PUE:</label>
+	  <label for="EMP_IDPUE">Puesto:</label>
       <br/>
-      <input type="number" id="EMP_IDPUE" class="swal2-input" placeholder="Ingrese el ID PUE">
+      <select id="EMP_IDPUE" class="swal2-select">
+      ${puestos.map(option => `<option value="${option.id}" ${option.id === Empleado.EMP_IDPUE ? 'selected' : ''}>${option.PUE_DESCRIPCION}</option>`).join('')}
+      </select>               
       <br/>
-      <label for="EMP_IDUSR">ID USR:</label>
+      <label for="EMP_IDUSR">Usuario:</label>
       <br/>
-      <input type="number" id="EMP_IDUSR" class="swal2-input" placeholder="Ingrese el ID USR">
+      <select id="EMP_IDUSR" class="swal2-select">
+      ${usuarios.map(option => `<option value="${option.id}" ${option.id === Empleado.EMP_IDUSR ? 'selected' : ''}>${option.USR_CORREO}</option>`).join('')}
+      </select>           
       <br/>
       <label for="EMP_NOMBRE">Nombre Empleado:</label>
       <br/>
@@ -149,7 +164,10 @@ const Empleado = () => {
 		const emp_nombre = Swal.getPopup().querySelector('#EMP_NOMBRE').value;
         //const camposValidos = validaCampos(codigo_exp, codigo_ppl, codigo_tdc, valor);
         // Crear el nuevo descuento
-
+        if (!emp_idpue || !emp_idusr || !emp_nombre) {
+          Swal.showValidationMessage('Por favor, complete todos los campos.');
+          return false; // Evitar que se cierre el modal si hay campos vacíos
+        }
           try {
             await apiService.postEmpleado({
               EMP_IDPUE: emp_idpue,

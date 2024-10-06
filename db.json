@@ -4,6 +4,11 @@
       "id": "3",
       "SME_NOMBRE": "Supermercado C",
       "SME_DIRECCION": "Plaza Comercial 789"
+    },
+    {
+      "SME_NOMBRE": "supermercado dd",
+      "SME_DIRECCION": "ciudad de guatemala2",
+      "id": "97bc"
     }
   ],
   "PAS_PASILLO": [
@@ -43,11 +48,6 @@
       "PRO_NOMBRE": "Importadora Norte",
       "PRO_CORREO": "infoimporfasdftadoranorte.com",
       "id": "3"
-    },
-    {
-      "PRO_NOMBRE": "test",
-      "PRO_CORREO": "fasdf@gmail.com",
-      "id": "6605"
     }
   ],
   "USR_USUARIO": [
@@ -117,6 +117,28 @@
     {
       "id": "2",
       "CAT_DESCRIPCION": "Frutas y Verduras"
+    }
+  ],
+  "SCA_SUBCATEGORIA": [
+    {
+      "id": "1",
+      "SCA_IDCAT": 1,
+      "SCA_DESCRIPCION": "Leche"
+    },
+    {
+      "id": "2",
+      "SCA_IDCAT": 1,
+      "SCA_DESCRIPCION": "Yogur"
+    },
+    {
+      "SCA_IDCAT": "1",
+      "SCA_DESCRIPCION": "Yogur",
+      "id": "3"
+    },
+    {
+      "id": "e647",
+      "SCA_IDCAT": "1",
+      "SCA_DESCRIPCION": "test"
     }
   ],
   "UNI_UNIDADMEDIDA": [
@@ -253,6 +275,58 @@
       "EMP_IDPUE": "5",
       "EMP_IDUSR": "1",
       "EMP_NOMBRE": "Carlos"
+    }
+  ],
+  "COM_COMPRA": [
+    {
+      "id": "1",
+      "COM_IDPRO": 1,
+      "COM_IDART": 101,
+      "COM_DESCRIPCION": "Compra de leche",
+      "COM_FECHA": "2024-10-01",
+      "COM_CANTIDAD": 100,
+      "COM_PRECIO_UNIDAD": 2,
+      "COM_TOTAL": 200
+    },
+    {
+      "id": "2",
+      "COM_IDPRO": 2,
+      "COM_IDART": 102,
+      "COM_DESCRIPCION": "Compra de frutas tropicales",
+      "COM_FECHA": "2024-10-02",
+      "COM_CANTIDAD": 50,
+      "COM_PRECIO_UNIDAD": 3,
+      "COM_TOTAL": 150
+    },
+    {
+      "id": "3",
+      "COM_IDPRO": 3,
+      "COM_IDART": 103,
+      "COM_DESCRIPCION": "Compra de queso",
+      "COM_FECHA": "2024-10-03",
+      "COM_CANTIDAD": 200,
+      "COM_PRECIO_UNIDAD": 5,
+      "COM_TOTAL": 1000
+    },
+    {
+      "id": "4",
+      "COM_IDPRO": 4,
+      "COM_IDART": 104,
+      "COM_DESCRIPCION": "Compra de verduras",
+      "COM_FECHA": "2024-10-04",
+      "COM_CANTIDAD": 75,
+      "COM_PRECIO_UNIDAD": 1,
+      "COM_TOTAL": 75
+    },
+    {
+      "COM_IDPRO": "5",
+      "COM_IDART": "105",
+      "COM_DESCRIPCION": "Compra de yogur",
+      "COM_FECHA": "2024-10-05T06:00",
+      "COM_CANTIDAD": "120",
+      "COM_PRECIO_UNIDAD": "2",
+      "COM_TOTAL": 240,
+      "id": "5"
     }
   ]
 }

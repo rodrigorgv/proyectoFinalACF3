@@ -72,6 +72,17 @@ const SuperMercado = () => {
             return false; // Evitar que se cierre el modal si hay campos vacíos
           }
 
+          const superMercadoExiste = SuperMercado.some(
+            superMercado => 
+              superMercado.SME_NOMBRE.toLowerCase() === sme_nombre.toLowerCase() && 
+              superMercado.SME_DIRECCION.toLowerCase() === sme_direccion.toLowerCase()
+          );
+          
+          if (superMercadoExiste) {
+            Swal.showValidationMessage('El supermercado ya existe.');
+            return false; // Evitar que se cierre el modal si ya existe el pasillo en el área
+          }            
+
           // Llamar a la función para actualizar el super
           apiService.updateSuperMercado(id, {
             SME_NOMBRE: sme_nombre,           
@@ -149,6 +160,17 @@ const SuperMercado = () => {
           Swal.showValidationMessage('Por favor, complete todos los campos.');
           return false; // Evitar que se cierre el modal si hay campos vacíos
         }
+
+        const superMercadoExiste = SuperMercado.some(
+          superMercado => 
+            superMercado.SME_NOMBRE.toLowerCase() === sme_nombre.toLowerCase() && 
+            superMercado.SME_DIRECCION.toLowerCase() === sme_direccion.toLowerCase()
+        );
+        
+        if (superMercadoExiste) {
+          Swal.showValidationMessage('El supermercado ya existe.');
+          return false; // Evitar que se cierre el modal si ya existe el pasillo en el área
+        }        
 
           try {
             await apiService.postSuperMercado({

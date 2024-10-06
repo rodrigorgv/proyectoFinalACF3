@@ -18,6 +18,9 @@ import CajasCobro from './Pages/cajasCobro';
 import PrivateRouteAdmin from './utils/PrivateRouteAdmin';
 import PrivateRouteCajero from './utils/PrivateRouteCajero';
 import Empleado from './Pages/empleado';
+import Subcategoria from './Pages/subCategoria';
+import Compras from './Pages/compras';
+import Articulo from './Pages/articulo';
 
 function App() {
   return (
@@ -34,12 +37,15 @@ function App() {
               <Route path="/consultaUsuario" element={<Usuario />} />
               <Route path="/consultaPuesto" element={<Puesto />} />
               <Route path="/consultaCategoria" element={<Categoria />} />
+              <Route path="/consultaSubCategoria" element={<Subcategoria />} />
               <Route path="/consultaUnidadMedida" element={<UnidadMedida />} />
               <Route path="/consultaArea" element={<Area />} />
               <Route path="/consultaCliente" element={<Cliente />} />
               <Route path="/venta" element={<Venta />} />
               <Route path="/consultaCajasCobro" element={<CajasCobro />} />
               <Route path="/consultaEmpleado" element={<Empleado />} />
+              <Route path="/consultaCompra" element={<Compras />} />
+              <Route path="/consultaArticulo" element={<Articulo />} />
             </Route>
             <Route element={<PrivateRouteCajero/>}>
               <Route path="/dashboardCajero" element={<DashboardCajero />} />

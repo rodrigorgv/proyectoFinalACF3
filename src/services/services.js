@@ -7,11 +7,13 @@ const urlPRO = 'http://localhost:3000/PRO_PROVEEDORES'
 const urlUSR = 'http://localhost:3000/USR_USUARIO'
 const urlPUE = 'http://localhost:3000/PUE_PUESTO'
 const urlCAT = 'http://localhost:3000/CAT_CATEGORIA'
+const urlSCA = 'http://localhost:3000/SCA_SUBCATEGORIA'
 const urlUNI = 'http://localhost:3000/UNI_UNIDADMEDIDA'
 const urlARA = 'http://localhost:3000/ARA_AREA'
 const urlCLI = 'http://localhost:3000/CLI_CLIENTE'
 const urlCAC = 'http://localhost:3000/CAC_CAJASCOBRO'
 const urlEMP = 'http://localhost:3000/EMP_EMPLEADO'
+const urlCOM = 'http://localhost:3000/COM_COMPRA'
 
 const apiService = {
 
@@ -316,6 +318,55 @@ const apiService = {
     console.log(response);
   },    
 
+  ////////////////////////// SUBCATEGORIA //////////////////////////
+  //TRAE TODOS LOS CategoriaS    
+  getSubCategorias: async () => {
+    try {
+      const response = await axios.get(urlSCA);
+      return response.data;
+    } catch (error) {
+      console.error('Error al realizar la consulta:', error);
+    }
+  },
+
+  //TRAE 1 SubCategoria POR ID
+
+  getSubCategoriaId: async (id) => {
+    try {
+      const response = await axios.get(`${urlSCA}/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error al consultar el SubSubCategoria por ID:', error);
+      throw error;
+    }
+  },
+
+  //CREA 1 SubCategoria  
+  postSubCategoria: async (nuevoSubCategoria) => {
+    try {
+      const response = await axios.post(urlSCA, nuevoSubCategoria);
+      console.log('Nuevo SubCategoria creado:', response.data);
+    } catch (error) {
+      console.error('Error al crear el SubCategoria:', error);
+      throw error;
+    }
+  },
+
+  //ACTUALIZA 1 SubCategoria
+  updateSubCategoria: async (id, newData) => {
+    try {
+      const response = await axios.put(`${urlSCA}/${id}`, newData);
+      console.log(response);
+    } catch (error) {
+      console.error('Error al actualizar el SubCategoria:', error);
+    }
+  },
+
+  //ELIMINA 1 SubCategoria  
+  deleteSubCategoria: async (id) => {
+    const response = await axios.delete(`${urlSCA}/${id}`);
+    console.log(response);
+  },  
 ////////////////////////// UNIDADMEDIDA //////////////////////////
   //TRAE TODOS LOS UnidadMedidaS    
   getUnidadesMedida: async () => {
@@ -563,7 +614,56 @@ const apiService = {
   deleteEmpleado: async (id) => {
     const response = await axios.delete(`${urlEMP}/${id}`);
     console.log(response);
-  },    
+  },   
+////////////////////////// COMPRA //////////////////////////
+  //TRAE TODAS LAS COMPRAS    
+  getCompras: async () => {
+    try {
+      const response = await axios.get(urlCOM);
+      return response.data;
+    } catch (error) {
+      console.error('Error al realizar la consulta:', error);
+    }
+  },
+
+  //TRAE 1 COMPRA POR ID
+
+  getCompraId: async (id) => {
+    try {
+      const response = await axios.get(`${urlCOM}/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error al consultar la compra por ID:', error);
+      throw error;
+    }
+  },
+
+  //CREA 1 COMPRA  
+  postCompra: async (nuevoCompra) => {
+    try {
+      const response = await axios.post(urlCOM, nuevoCompra);
+      console.log('Nueva compra creada:', response.data);
+    } catch (error) {
+      console.error('Error al crear la compra:', error);
+      throw error;
+    }
+  },
+
+  //ACTUALIZA 1 COMPRA
+  updateCompra: async (id, newData) => {
+    try {
+      const response = await axios.put(`${urlCOM}/${id}`, newData);
+      console.log(response);
+    } catch (error) {
+      console.error('Error al actualizar la compra:', error);
+    }
+  },
+
+  //ELIMINA 1 COMPRA  
+  deleteCompra: async (id) => {
+    const response = await axios.delete(`${urlCOM}/${id}`);
+    console.log(response);
+  },   
   
 }
 

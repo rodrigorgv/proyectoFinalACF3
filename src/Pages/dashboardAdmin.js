@@ -36,7 +36,7 @@ const DashboardAdmin = () => {
                         title="Compra a proveedores"                    
                         iconClass="fas fa-money-check-alt"
                         quantity={99999}
-                        enlace={"/consultaProveedores"}
+                        enlace={"/consultaCompra"}
                         tipoTexto={"text-warning"}
                         tipoBorde={"border-left-warning"}
                     />
@@ -58,7 +58,7 @@ const DashboardAdmin = () => {
 
                         iconClass="fa-solid fa-box"
                         quantity={99999}
-                        enlace={"/consultaSuperMercado"}
+                        enlace={"/consultaArticulo"}
                         tipoTexto={"text-primary"}
                         tipoBorde={"border-left-primary"}
                     />
@@ -76,7 +76,7 @@ const DashboardAdmin = () => {
                         title="SubCategoria"
                         iconClass="fas fa-puzzle-piece"
                         quantity={99999}
-                        enlace={"/consultaCategoria"}
+                        enlace={"/consultaSubCategoria"}
                         tipoTexto={"text-success"}
                         tipoBorde={"border-left-success"}
                     />

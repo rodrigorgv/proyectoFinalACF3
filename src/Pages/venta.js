@@ -4,6 +4,7 @@ import TableComponentVenta from '../Components/TableComponentVenta';
 import BarcodeScannerComponent from '../Components/BarcodeScannerComponent';
 import CardComponent from '../Components/CardComponent';
 import Swal from 'sweetalert2';
+import apiService from '../services/services';
 
 const Venta = () => {
     const [isShownEscaner, setIsShownEscaner] = useState(false);
@@ -25,46 +26,139 @@ const Venta = () => {
     };
 
     // Función para manejar el ingreso manual de productos
+    // Función para manejar el ingreso manual de productos
     const handleManualInput = async () => {
-        const { value: formValues } = await Swal.fire({
-            title: 'Agregar Producto Manualmente',
-            html: `
-                <input id="swal-input1" class="swal2-input" placeholder="Nombre del Producto">
-                <input id="swal-input2" type="number" class="swal2-input" placeholder="Cantidad">
-                <input id="swal-input3" type="number" class="swal2-input" placeholder="Precio">
-            `,
-            focusConfirm: false,
-            preConfirm: () => {
-                return [
-                    document.getElementById('swal-input1').value,
-                    document.getElementById('swal-input2').value,
-                    document.getElementById('swal-input3').value
-                ];
-            }
-        });
+        try {
+            // Supongamos que `apiService.getArticulos` devuelve la lista de artículos existentes
+            const articulos = await apiService.getArticulos();
 
-        if (formValues) {
-            const [nombre, cantidad, precio] = formValues;
-            const nuevoProducto = {
-                nombre,
-                cantidad: parseInt(cantidad, 10),
-                precio: parseFloat(precio),
-                total: parseInt(cantidad, 10) * parseFloat(precio)
-            };
-            handleAddProduct(nuevoProducto);
+            // Verificamos qué datos devuelve la API
+            console.log('Artículos obtenidos:', articulos);
+
+            if (!articulos || articulos.length === 0) {
+                throw new Error('No se encontraron productos.');
+            }
+
+            const options = articulos.map(articulo => `<option value="${articulo.id}">${articulo.ART_NOMBRE} - Precio: ${articulo.ART_PRECIO}</option>`).join('');
+
+            const { value: formValues } = await Swal.fire({
+                title: 'Agregar Producto Manualmente',
+                html: `
+                    <select id="swal-input1" class="swal2-select">
+                        <option value="">Seleccione un producto</option>
+                        ${options}
+                    </select>
+                    <input id="swal-input2" type="number" class="swal2-input" placeholder="Cantidad">
+                `,
+                focusConfirm: false,
+                preConfirm: () => {
+                    return [
+                        document.getElementById('swal-input1').value,
+                        document.getElementById('swal-input2').value
+                    ];
+                }
+            });
+
+            if (formValues) {
+                const [articuloId, cantidad] = formValues;
+                if (!articuloId || !cantidad) {
+                    Swal.showValidationMessage('Por favor, seleccione un producto y defina una cantidad.');
+                    return;
+                }
+
+                // Buscamos el artículo en la lista
+                const articuloSeleccionado = articulos.find(art => art.id == parseInt(articuloId));
+
+                if (!articuloSeleccionado) {
+                    throw new Error('Producto no encontrado.');
+                }
+
+                const nuevoProducto = {
+                    nombre: articuloSeleccionado.ART_NOMBRE,
+                    cantidad: parseInt(cantidad, 10),
+                    precio: parseFloat(articuloSeleccionado.ART_PRECIO),
+                    total: parseInt(cantidad, 10) * parseFloat(articuloSeleccionado.ART_PRECIO)
+                };
+                handleAddProduct(nuevoProducto);
+            }
+        } catch (error) {
+            console.error('Error al obtener los productos:', error);
+            Swal.fire('Error', 'No se pudieron obtener los productos.', 'error');
         }
     };
 
+
     // Manejo del escaneo de código de barras (placeholder)
-    const handleScan = (scannedData) => {
-        const producto = {
-            nombre: 'Producto Escaneado', // Asigna el nombre del producto basado en el código escaneado
-            cantidad: 1,
-            precio: 10.00, // Precio por defecto, podría cambiarse si se obtiene de una base de datos
-            total: 10.00
-        };
-        handleAddProduct(producto);
+    // Manejo del escaneo de código de barras
+    const handleScan = async (scannedData) => {
+        try {
+            // Obtener todos los artículos
+            const articulos = await apiService.getArticulos();
+
+            // Buscar el producto cuyo código de barras coincida con el escaneado
+            console.log('Código de barras escaneado:', scannedData);
+            const producto = articulos.find(articulo => articulo.ART_CODIGO_DE_BARRA == scannedData);
+            console.log('Producto encontrado:', producto);
+
+            if (producto) {
+                // Abrir un modal para solicitar la cantidad
+                const { value: cantidad } = await Swal.fire({
+                    title: 'Cantidad de artículos',
+                    input: 'number',
+                    inputLabel: `Ingrese la cantidad de ${producto.ART_NOMBRE} que desea añadir`,
+                    inputPlaceholder: 'Cantidad',
+                    inputAttributes: {
+                        min: 1,
+                        step: 1
+                    },
+                    showCancelButton: true,
+                    confirmButtonText: 'Añadir a la venta',
+                    cancelButtonText: 'Cancelar',
+                    inputValidator: (value) => {
+                        if (!value || value <= 0) {
+                            return 'Debe ingresar una cantidad válida';
+                        }
+                    }
+                });
+
+                if (cantidad) {
+                    // Si se ingresó una cantidad válida, agregar el producto con la cantidad indicada
+                    const nuevoProducto = {
+                        nombre: producto.ART_NOMBRE,   // Nombre del producto
+                        cantidad: parseInt(cantidad, 10), // Cantidad ingresada
+                        precio: producto.ART_PRECIO,   // Precio del producto
+                        total: producto.ART_PRECIO * parseInt(cantidad, 10) // Precio * cantidad
+                    };
+
+                    // Agregar el producto a la lista de productos
+                    handleAddProduct(nuevoProducto);
+                }
+            } else {
+                // Si no se encuentra el producto, mostrar un error
+                throw new Error("Producto no encontrado");
+            }
+        } catch (error) {
+            console.error("Error al obtener el producto:", error.message);
+
+            // Mostrar alerta si hay un error
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo encontrar el producto escaneado.'
+            });
+        }
     };
+
+
+
+    // En tu render:
+    {
+        isShownEscaner && (
+            <div className='camarita'>
+                <BarcodeScannerComponent onScan={handleScan} />
+            </div>
+        )
+    }
 
     return (
         <div>
@@ -82,7 +176,7 @@ const Venta = () => {
                 </ul>
                 <input type="text" className="form-control" aria-label="Text input with dropdown button" />
             </div>
-            
+
             <div>
                 <div >
                     <div onClick={handleClickTeclado}>
@@ -93,7 +187,7 @@ const Venta = () => {
                             tipoBorde={"border-left-secondary"}
                         />
                     </div>
-                    <div  onClick={handleClickEscaner}>
+                    <div onClick={handleClickEscaner}>
                         <CardComponent
                             title="Escanear Producto"
                             iconClass="fa-solid fa-barcode"

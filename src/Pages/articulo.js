@@ -173,15 +173,15 @@ const Articulo = () => {
 
   const accionesBotones = (row) => (
     <div className="opcionesBTN">
-      <button type="button" className="btn btn-outline-primary custom-tooltip" onClick={() => handleModificarArticulo(row.ART_ID)}><i className="fa-solid fa-pen"></i></button>
-      <button type="button" className="btn btn-outline-danger" onClick={() => handleEliminarArticulo(row.ART_ID)}><i className="fa-solid fa-trash"></i></button>
+      <button type="button" className="btn btn-outline-primary custom-tooltip" onClick={() => handleModificarArticulo(row.id)}><i className="fa-solid fa-pen"></i></button>
+      <button type="button" className="btn btn-outline-danger" onClick={() => handleEliminarArticulo(row.id)}><i className="fa-solid fa-trash"></i></button>
     </div>
   );
 
   const columnas = [
     {
       name: 'ID',
-      selector: row => row.ART_ID,
+      selector: row => row.id,
       sortable: true,
     },
     {

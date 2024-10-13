@@ -328,5 +328,62 @@
       "COM_TOTAL": 240,
       "id": "5"
     }
+  ],
+  "ART_ARTICULO": [
+    {
+      "id": 1,
+      "ART_IDUNI": 1,
+      "ART_IDCAT": 1,
+      "ART_ADARA": 1,
+      "ART_NOMBRE": "Leche Entera",
+      "ART_PRECIO": 25,
+      "ART_STOCK": 100,
+      "ART_CODIGO_BARRA": 100001,
+      "ART_CODIGO_DE_BARRA": "123456789012"
+    },
+    {
+      "id": 2,
+      "ART_IDUNI": 1,
+      "ART_IDCAT": 1,
+      "ART_ADARA": 1,
+      "ART_NOMBRE": "Queso Cheddar",
+      "ART_PRECIO": 50,
+      "ART_STOCK": 50,
+      "ART_CODIGO_BARRA": 100002,
+      "ART_CODIGO_DE_BARRA": "123456789013"
+    },
+    {
+      "id": 3,
+      "ART_IDUNI": 2,
+      "ART_IDCAT": 2,
+      "ART_ADARA": 2,
+      "ART_NOMBRE": "Manzana Roja",
+      "ART_PRECIO": 10,
+      "ART_STOCK": 200,
+      "ART_CODIGO_BARRA": 100003,
+      "ART_CODIGO_DE_BARRA": "123456789014"
+    },
+    {
+      "id": 4,
+      "ART_IDUNI": 2,
+      "ART_IDCAT": 2,
+      "ART_ADARA": 2,
+      "ART_NOMBRE": "Plátano",
+      "ART_PRECIO": 8,
+      "ART_STOCK": 150,
+      "ART_CODIGO_BARRA": 100004,
+      "ART_CODIGO_DE_BARRA": "123456789015"
+    },
+    {
+      "id": 5,
+      "ART_IDUNI": 1,
+      "ART_IDCAT": 1,
+      "ART_ADARA": 1,
+      "ART_NOMBRE": "Yogur Natural",
+      "ART_PRECIO": 15,
+      "ART_STOCK": 80,
+      "ART_CODIGO_BARRA": 100005,
+      "ART_CODIGO_DE_BARRA": "123456789016"
+    }
   ]
 }

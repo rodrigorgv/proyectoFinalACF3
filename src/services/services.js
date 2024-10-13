@@ -14,6 +14,7 @@ const urlCLI = 'http://localhost:3000/CLI_CLIENTE'
 const urlCAC = 'http://localhost:3000/CAC_CAJASCOBRO'
 const urlEMP = 'http://localhost:3000/EMP_EMPLEADO'
 const urlCOM = 'http://localhost:3000/COM_COMPRA'
+const urlART = 'http://localhost:3000/ART_ARTICULO'
 
 const apiService = {
 
@@ -664,6 +665,55 @@ const apiService = {
     const response = await axios.delete(`${urlCOM}/${id}`);
     console.log(response);
   },   
+  ////////////////////////// ARTICULO //////////////////////////
+  //TRAE TODOS LOS ARTICULOS    
+  getArticulos: async () => {
+    try {
+      const response = await axios.get(urlART);
+      return response.data;
+    } catch (error) {
+      console.error('Error al realizar la consulta:', error);
+    }
+  },
+
+  //TRAE 1 ARTICULO POR ID
+
+  getArticuloId: async (id) => {
+    try {
+      const response = await axios.get(`${urlART}/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error al consultar el articulo por ID:', error);
+      throw error;
+    }
+  },
+
+  //CREA 1 ARTICULO  
+  postArticulo: async (nuevoArticulo) => {
+    try {
+      const response = await axios.post(urlART, nuevoArticulo);
+      console.log('Nuevo articulo creado:', response.data);
+    } catch (error) {
+      console.error('Error al crear el articulo:', error);
+      throw error;
+    }
+  },
+
+  //ACTUALIZA 1 ARTICULO
+  updateArticulo: async (id, newData) => {
+    try {
+      const response = await axios.put(`${urlART}/${id}`, newData);
+      console.log(response);
+    } catch (error) {
+      console.error('Error al actualizar el articulo:', error);
+    }
+  },
+
+  //ELIMINA 1 ARTICULO  
+  deleteArticulo: async (id) => {
+    const response = await axios.delete(`${urlART}/${id}`);
+    console.log(response);
+  },
   
 }
 

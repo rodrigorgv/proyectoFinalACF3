@@ -331,7 +331,7 @@
   ],
   "ART_ARTICULO": [
     {
-      "id": 1,
+      "id": "1",
       "ART_IDUNI": 1,
       "ART_IDCAT": 1,
       "ART_ADARA": 1,
@@ -342,7 +342,7 @@
       "ART_CODIGO_DE_BARRA": "123456789012"
     },
     {
-      "id": 2,
+      "id": "2",
       "ART_IDUNI": 1,
       "ART_IDCAT": 1,
       "ART_ADARA": 1,
@@ -353,7 +353,7 @@
       "ART_CODIGO_DE_BARRA": "123456789013"
     },
     {
-      "id": 3,
+      "id": "3",
       "ART_IDUNI": 2,
       "ART_IDCAT": 2,
       "ART_ADARA": 2,
@@ -364,7 +364,7 @@
       "ART_CODIGO_DE_BARRA": "123456789014"
     },
     {
-      "id": 4,
+      "id": "4",
       "ART_IDUNI": 2,
       "ART_IDCAT": 2,
       "ART_ADARA": 2,
@@ -375,7 +375,7 @@
       "ART_CODIGO_DE_BARRA": "123456789015"
     },
     {
-      "id": 5,
+      "id": "5",
       "ART_IDUNI": 1,
       "ART_IDCAT": 1,
       "ART_ADARA": 1,
@@ -384,6 +384,16 @@
       "ART_STOCK": 80,
       "ART_CODIGO_BARRA": 100005,
       "ART_CODIGO_DE_BARRA": "123456789016"
+    },
+    {
+      "ART_NOMBRE": "prueba",
+      "ART_PRECIO": "9.99",
+      "ART_STOCK": "500",
+      "ART_CODIGO_DE_BARRA": "14234234234",
+      "ART_IDUNI": "c63f",
+      "ART_IDCAT": "2",
+      "ART_IDARA": "3",
+      "id": "c42f"
     }
   ]
 }

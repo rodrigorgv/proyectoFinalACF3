@@ -15,6 +15,8 @@ const urlCAC = 'http://localhost:3000/CAC_CAJASCOBRO'
 const urlEMP = 'http://localhost:3000/EMP_EMPLEADO'
 const urlCOM = 'http://localhost:3000/COM_COMPRA'
 const urlART = 'http://localhost:3000/ART_ARTICULO'
+const urlVEN = 'http://localhost:3000/VEN_VENTA'
+const urlDVA = 'http://localhost:3000/DVA_DETALLE_VENTA'
 
 const apiService = {
 
@@ -714,6 +716,104 @@ const apiService = {
     const response = await axios.delete(`${urlART}/${id}`);
     console.log(response);
   },
+////////////////////////// VENTA  //////////////////////////
+  //TRAE TODOS LOS VentaS    
+  getVentas: async () => {
+    try {
+      const response = await axios.get(urlVEN);
+      return response.data;
+    } catch (error) {
+      console.error('Error al realizar la consulta:', error);
+    }
+  },
+
+  //TRAE 1 Venta POR ID
+
+  getVentaId: async (id) => {
+    try {
+      const response = await axios.get(`${urlVEN}/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error al consultar el Venta por ID:', error);
+      throw error;
+    }
+  },
+
+  //CREA 1 Venta  
+  postVenta: async (nuevoVenta) => {
+    try {
+      const response = await axios.post(urlVEN, nuevoVenta);
+      console.log('Nuevo Venta creado:', response.data);
+    } catch (error) {
+      console.error('Error al crear el Venta:', error);
+      throw error;
+    }
+  },
+
+  //ACTUALIZA 1 Venta
+  updateVenta: async (id, newData) => {
+    try {
+      const response = await axios.put(`${urlVEN}/${id}`, newData);
+      console.log(response);
+    } catch (error) {
+      console.error('Error al actualizar el Venta:', error);
+    }
+  },
+
+  //ELIMINA 1 Venta  
+  deleteVenta: async (id) => {
+    const response = await axios.delete(`${urlVEN}/${id}`);
+    console.log(response);
+  },     
+////////////////////////// DetalleVenta  //////////////////////////
+  //TRAE TODOS LOS DetalleVentaS    
+  getDetalleVentas: async () => {
+    try {
+      const response = await axios.get(urlDVA);
+      return response.data;
+    } catch (error) {
+      console.error('Error al realizar la consulta:', error);
+    }
+  },
+
+  //TRAE 1 DetalleVenta POR ID
+
+  getDetalleVentaId: async (id) => {
+    try {
+      const response = await axios.get(`${urlDVA}/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error al consultar el DetalleVenta por ID:', error);
+      throw error;
+    }
+  },
+
+  //CREA 1 DetalleVenta  
+  postDetalleVenta: async (nuevoDetalleVenta) => {
+    try {
+      const response = await axios.post(urlDVA, nuevoDetalleVenta);
+      console.log('Nuevo DetalleVenta creado:', response.data);
+    } catch (error) {
+      console.error('Error al crear el DetalleVenta:', error);
+      throw error;
+    }
+  },
+
+  //ACTUALIZA 1 DetalleVenta
+  updateDetalleVenta: async (id, newData) => {
+    try {
+      const response = await axios.put(`${urlDVA}/${id}`, newData);
+      console.log(response);
+    } catch (error) {
+      console.error('Error al actualizar el DetalleVenta:', error);
+    }
+  },
+
+  //ELIMINA 1 DetalleVenta  
+  deleteDetalleVenta: async (id) => {
+    const response = await axios.delete(`${urlDVA}/${id}`);
+    console.log(response);
+  },       
   
 }
 

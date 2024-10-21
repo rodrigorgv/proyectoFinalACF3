@@ -21,6 +21,7 @@ import Empleado from './Pages/empleado';
 import Subcategoria from './Pages/subCategoria';
 import Compras from './Pages/compras';
 import Articulo from './Pages/articulo';
+import MisVentasCajero from './Pages/misVentasCajero';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
             </Route>
             <Route element={<PrivateRouteCajero/>}>
               <Route path="/dashboardCajero" element={<DashboardCajero />} />
+              <Route path="/ventasCajero" element={<MisVentasCajero />} />
             </Route>
         </Routes>    
       </Router>

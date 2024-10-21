@@ -8,14 +8,15 @@ const PrivateRouteCajero = () => {
   if (user) {
     try {
       userData = JSON.parse(user);
+      console.log('data en private', user);
     } catch (error) {
       console.error('Error al parsear la cookie del usuario:', error);
     }
   }
 
   console.log('User data:', userData);
-  userData.perfil = 2;
-  if (userData.perfil === 2) {
+  //userData.perfil = 2;
+  if (userData.perfil == 2) {
     return <Outlet />;
   }
 

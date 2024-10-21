@@ -329,6 +329,48 @@
       "id": "5"
     }
   ],
+  "VEN_VENTA": [
+    {
+      "id": "721e",
+      "VEN_IDCLI": 1,
+      "VEN_IDCAC": 1,
+      "VEN_FECHA": "2024-10-21",
+      "VENT_TOTAL": 140
+    },
+    {
+      "id": "b52f",
+      "VEN_IDCLI": 3,
+      "VEN_IDCAC": 1,
+      "VEN_FECHA": "2024-10-21",
+      "VENT_TOTAL": 60
+    }
+  ],
+  "DVA_DETALLE_VENTA": [
+    {
+      "id": "d6b6",
+      "DVA_IDVEN": "721e",
+      "DVA_IDART": "2",
+      "DVA_CANTIDAD": 2,
+      "DVA_PRECIO_UNIDAD": 50,
+      "DVA_SUBTOTAL": 100
+    },
+    {
+      "id": "75a6",
+      "DVA_IDVEN": "721e",
+      "DVA_IDART": "3",
+      "DVA_CANTIDAD": 4,
+      "DVA_PRECIO_UNIDAD": 10,
+      "DVA_SUBTOTAL": 40
+    },
+    {
+      "id": "c203",
+      "DVA_IDVEN": "b52f",
+      "DVA_IDART": "5",
+      "DVA_CANTIDAD": 4,
+      "DVA_PRECIO_UNIDAD": 15,
+      "DVA_SUBTOTAL": 60
+    }
+  ],
   "ART_ARTICULO": [
     {
       "id": "1",

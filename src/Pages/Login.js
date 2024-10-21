@@ -14,6 +14,7 @@ function Login() {
   
   const navigate = useNavigate();
   const [user, setUser] = useState([]);
+  const [Empleados, setEmpleados] = useState([]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,17 +23,28 @@ function Login() {
     const dataUsuarios = await apiService.getUsuarios();
     setUser(dataUsuarios);
     console.log({dataUsuarios});
+    const dataEmpleados = await apiService.getEmpleados();
+    setEmpleados(dataEmpleados);
 
     const user = dataUsuarios.find(u => u.USR_CORREO === email && u.USR_CONTRASENA === password);
+    console.log({user});
+
+    const empleado = dataEmpleados.find(e => e.EMP_IDUSR == user.id );
     console.log({user});
     if (user) {
       // Grabar la cookie
       Cookies.set('user', JSON.stringify({
-        email: user.usr_correo_usuario,
+        email: user.USR_CORREO,
         perfil: user.USR_IDPEF,
-        expid: user.usr_codexp
+        idusuario: user.id,
+        empleado: empleado.id,
       }), { expires: 1 }); // La cookie expirará en 1 día
-      console.log(user.USR_IDPEF);
+      console.log('este es el json ',JSON.stringify({
+        email: user.USR_CORREO,
+        perfil: user.USR_IDPEF,
+        idusuario: user.id,
+        empleado: empleado.id,
+      }));
       if (user.USR_IDPEF === 1) {
         console.log('entra a admin perfil 1');
         navigate("/dashboardAdmin");

@@ -5,7 +5,6 @@ import BarcodeScannerComponent from '../Components/BarcodeScannerComponent';
 import CardComponent from '../Components/CardComponent';
 import Swal from 'sweetalert2';
 import apiService from '../services/services';
-import { Navigate } from 'react-router-dom';
 
 const Venta = () => {
     const [isShownEscaner, setIsShownEscaner] = useState(false);
@@ -75,7 +74,6 @@ const handleCompleteVenta = async () => {
                 DVA_PRECIO_UNIDAD: producto.precio, // Precio unitario
                 DVA_SUBTOTAL: producto.total // Subtotal (precio * cantidad)
             };
-            console.log('data', detalleVentaData)
 
             await apiService.postDetalleVenta(detalleVentaData);
         }
@@ -85,7 +83,6 @@ const handleCompleteVenta = async () => {
         setProductos([]); // Limpiar productos
         setTotalVenta(0); // Resetear total
         setClienteId(null); // Resetear cliente
-        <Navigate to="/DashboardCajero" />;
 
     } catch (error) {
         console.error('Error al completar la venta:', error);
@@ -142,7 +139,6 @@ const handleCompleteVenta = async () => {
                 }
 
                 const nuevoProducto = {
-                    id: articuloId,
                     nombre: articuloSeleccionado.ART_NOMBRE,
                     cantidad: parseInt(cantidad, 10),
                     precio: parseFloat(articuloSeleccionado.ART_PRECIO),
@@ -193,7 +189,6 @@ const handleCompleteVenta = async () => {
                 if (cantidad) {
                     // Si se ingresó una cantidad válida, agregar el producto con la cantidad indicada
                     const nuevoProducto = {
-                        id: producto.id,
                         nombre: producto.ART_NOMBRE,   // Nombre del producto
                         cantidad: parseInt(cantidad, 10), // Cantidad ingresada
                         precio: producto.ART_PRECIO,   // Precio del producto

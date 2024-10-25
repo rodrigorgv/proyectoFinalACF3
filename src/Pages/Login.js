@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import apiService from '../services/services';
@@ -20,6 +19,11 @@ function Login() {
     event.preventDefault();
     const email = document.getElementById('InputEmail').value;
     const password = document.getElementById('InputPassword').value;
+    if (!email || !password){
+      Swal.fire('Error', 'Ingrese las credenciales', 'error');
+      console.error('Usuario no autenticado');      
+      return;
+    }
     const dataUsuarios = await apiService.getUsuarios();
     setUser(dataUsuarios);
     console.log({dataUsuarios});
@@ -29,9 +33,9 @@ function Login() {
     const user = dataUsuarios.find(u => u.USR_CORREO === email && u.USR_CONTRASENA === password);
     console.log({user});
 
-    const empleado = dataEmpleados.find(e => e.EMP_IDUSR == user.id );
-    console.log({user});
-    if (user) {
+    console.log('este es el usuario', {user});
+    if (user != undefined) {
+      const empleado = dataEmpleados.find(e => e.EMP_IDUSR == user.id );
       // Grabar la cookie
       Cookies.set('user', JSON.stringify({
         email: user.USR_CORREO,
@@ -89,13 +93,6 @@ function Login() {
                     </label>
                   </div>
 
-                  {/* <!-- Checkbox --> */}
-                  <div className="form-check d-flex justify-content-start mb-4">
-                    <input className="form-check-input" type="checkbox" value="" id="form1Example3" />
-                    <label className="form-check-label" htmlFor="form1Example3">
-                      Remember password
-                    </label>
-                  </div>
                   {/* <Link style={{ textDecoration: "none" }} to={"/dashboardAdmin"}> */}
                   
                   <button className="btn btn-primary btn-lg btn-block" >
@@ -105,12 +102,7 @@ function Login() {
 
                   <hr className="my-4" />
 
-                  <button className="btn btn-lg btn-block btn-primary" style={{ backgroundColor: '#dd4b39' }} type="submit">
-                    <i className="fab fa-google me-2"></i> Sign in with google
-                  </button>
-                  <button className="btn btn-lg btn-block btn-primary mb-2" style={{ backgroundColor: '#3b5998' }} type="submit">
-                    <i className="fab fa-facebook-f me-2"></i> Sign in with facebook
-                  </button>
+                  
                 </form>
               </div>
             </div>

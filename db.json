@@ -331,44 +331,81 @@
   ],
   "VEN_VENTA": [
     {
-      "id": "721e",
+      "id": "6f12",
+      "VEN_IDCLI": 3,
+      "VEN_FECHA": "2024-10-21",
+      "VENT_TOTAL": 50
+    },
+    {
+      "id": "6021",
+      "VEN_IDCLI": 1,
+      "VEN_FECHA": "2024-10-21",
+      "VENT_TOTAL": 20
+    },
+    {
+      "id": "af92",
       "VEN_IDCLI": 1,
       "VEN_IDCAC": 1,
       "VEN_FECHA": "2024-10-21",
-      "VENT_TOTAL": 140
+      "VENT_TOTAL": 70
     },
     {
-      "id": "b52f",
-      "VEN_IDCLI": 3,
+      "id": "dc03",
+      "VEN_IDCLI": 1,
       "VEN_IDCAC": 1,
-      "VEN_FECHA": "2024-10-21",
-      "VENT_TOTAL": 60
+      "VEN_FECHA": "2024-10-25",
+      "VENT_TOTAL": 40
+    },
+    {
+      "id": "0c84",
+      "VEN_IDCLI": 1,
+      "VEN_IDCAC": 1,
+      "VEN_FECHA": "2024-10-25",
+      "VENT_TOTAL": 50
     }
   ],
   "DVA_DETALLE_VENTA": [
     {
-      "id": "d6b6",
-      "DVA_IDVEN": "721e",
-      "DVA_IDART": "2",
+      "id": "c5be",
+      "DVA_IDVEN": "6f12",
       "DVA_CANTIDAD": 2,
-      "DVA_PRECIO_UNIDAD": 50,
-      "DVA_SUBTOTAL": 100
+      "DVA_PRECIO_UNIDAD": 25,
+      "DVA_SUBTOTAL": 50
     },
     {
-      "id": "75a6",
-      "DVA_IDVEN": "721e",
-      "DVA_IDART": "3",
+      "id": "e7b6",
+      "DVA_IDVEN": "6021",
+      "DVA_CANTIDAD": 2,
+      "DVA_PRECIO_UNIDAD": 10,
+      "DVA_SUBTOTAL": 20
+    },
+    {
+      "id": "fd25",
+      "DVA_IDVEN": "af92",
+      "DVA_CANTIDAD": 2,
+      "DVA_PRECIO_UNIDAD": 15,
+      "DVA_SUBTOTAL": 30
+    },
+    {
+      "id": "30da",
+      "DVA_IDVEN": "af92",
+      "DVA_CANTIDAD": 5,
+      "DVA_PRECIO_UNIDAD": 8,
+      "DVA_SUBTOTAL": 40
+    },
+    {
+      "id": "d840",
+      "DVA_IDVEN": "dc03",
       "DVA_CANTIDAD": 4,
       "DVA_PRECIO_UNIDAD": 10,
       "DVA_SUBTOTAL": 40
     },
     {
-      "id": "c203",
-      "DVA_IDVEN": "b52f",
-      "DVA_IDART": "5",
-      "DVA_CANTIDAD": 4,
-      "DVA_PRECIO_UNIDAD": 15,
-      "DVA_SUBTOTAL": 60
+      "id": "b4ca",
+      "DVA_IDVEN": "0c84",
+      "DVA_CANTIDAD": 2,
+      "DVA_PRECIO_UNIDAD": 25,
+      "DVA_SUBTOTAL": 50
     }
   ],
   "ART_ARTICULO": [

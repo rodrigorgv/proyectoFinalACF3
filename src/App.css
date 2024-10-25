@@ -21,6 +21,11 @@
   width: 300px;
 }
 
+.cajita{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
 .ancho20rem{
   width: 20rem;
 }

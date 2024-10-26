@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import apiService from '../services/services';
@@ -14,25 +13,42 @@ function Login() {
   
   const navigate = useNavigate();
   const [user, setUser] = useState([]);
+  const [Empleados, setEmpleados] = useState([]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const email = document.getElementById('InputEmail').value;
     const password = document.getElementById('InputPassword').value;
+    if (!email || !password){
+      Swal.fire('Error', 'Ingrese las credenciales', 'error');
+      console.error('Usuario no autenticado');      
+      return;
+    }
     const dataUsuarios = await apiService.getUsuarios();
     setUser(dataUsuarios);
     console.log({dataUsuarios});
+    const dataEmpleados = await apiService.getEmpleados();
+    setEmpleados(dataEmpleados);
 
     const user = dataUsuarios.find(u => u.USR_CORREO === email && u.USR_CONTRASENA === password);
     console.log({user});
-    if (user) {
+
+    console.log('este es el usuario', {user});
+    if (user != undefined) {
+      const empleado = dataEmpleados.find(e => e.EMP_IDUSR == user.id );
       // Grabar la cookie
       Cookies.set('user', JSON.stringify({
-        email: user.usr_correo_usuario,
+        email: user.USR_CORREO,
         perfil: user.USR_IDPEF,
-        expid: user.usr_codexp
+        idusuario: user.id,
+        empleado: empleado.id,
       }), { expires: 1 }); // La cookie expirará en 1 día
-      console.log(user.USR_IDPEF);
+      console.log('este es el json ',JSON.stringify({
+        email: user.USR_CORREO,
+        perfil: user.USR_IDPEF,
+        idusuario: user.id,
+        empleado: empleado.id,
+      }));
       if (user.USR_IDPEF === 1) {
         console.log('entra a admin perfil 1');
         navigate("/dashboardAdmin");
@@ -77,13 +93,6 @@ function Login() {
                     </label>
                   </div>
 
-                  {/* <!-- Checkbox --> */}
-                  <div className="form-check d-flex justify-content-start mb-4">
-                    <input className="form-check-input" type="checkbox" value="" id="form1Example3" />
-                    <label className="form-check-label" htmlFor="form1Example3">
-                      Remember password
-                    </label>
-                  </div>
                   {/* <Link style={{ textDecoration: "none" }} to={"/dashboardAdmin"}> */}
                   
                   <button className="btn btn-primary btn-lg btn-block" >
@@ -93,12 +102,7 @@ function Login() {
 
                   <hr className="my-4" />
 
-                  <button className="btn btn-lg btn-block btn-primary" style={{ backgroundColor: '#dd4b39' }} type="submit">
-                    <i className="fab fa-google me-2"></i> Sign in with google
-                  </button>
-                  <button className="btn btn-lg btn-block btn-primary mb-2" style={{ backgroundColor: '#3b5998' }} type="submit">
-                    <i className="fab fa-facebook-f me-2"></i> Sign in with facebook
-                  </button>
+                  
                 </form>
               </div>
             </div>

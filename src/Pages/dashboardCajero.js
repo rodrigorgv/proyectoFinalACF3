@@ -21,6 +21,14 @@ const DashboardCajero = () => {
                         tipoTexto={"text-success"}
                         tipoBorde={"border-left-success"}
                     />
+                    <CardComponent
+                        title="Mis ventas"
+                        iconClass="fa-solid fa-list-check"
+                        quantity={99999}
+                        enlace={"/ventasCajero"}
+                        tipoTexto={"text-warning"}
+                        tipoBorde={"border-left-warning"}
+                    />
 
                 </div>
 

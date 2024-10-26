@@ -10,6 +10,8 @@ const Venta = () => {
     const [isShownEscaner, setIsShownEscaner] = useState(false);
     const [isShownTeclado, setIsShownTeclado] = useState(false);
     const [productos, setProductos] = useState([]); // Para almacenar los productos escaneados o ingresados manualmente.
+    const [clienteId, setClienteId] = useState(null); // Guardar ID de cliente
+    const [totalVenta, setTotalVenta] = useState(0); // Total de la venta
 
     const handleClickEscaner = () => {
         setIsShownEscaner(current => !current);
@@ -21,11 +23,74 @@ const Venta = () => {
         setIsShownEscaner(false);
     };
 
-    const handleAddProduct = (producto) => {
-        setProductos(prevProductos => [...prevProductos, producto]);
+    const handleClienteSelection = (id) => {
+        setClienteId(id);
     };
 
-    // Función para manejar el ingreso manual de productos
+    const handleAddProduct = (producto) => {
+        setProductos(prevProductos => [...prevProductos, producto]);
+        // Calcular nuevo total
+        setTotalVenta(prevTotal => prevTotal + producto.total);        
+    };
+
+// Función para completar la venta
+const handleCompleteVenta = async () => {
+    if (!clienteId) {
+        Swal.fire('Error', 'Por favor seleccione un cliente antes de completar la venta.', 'error');
+        return;
+    }
+
+    if (productos.length === 0) {
+        Swal.fire('Error', 'No hay productos en la venta.', 'error');
+        return;
+    }
+
+    try {
+        // 1. Registrar la venta en VEN_VENTA
+        const ventaData = {
+            VEN_IDCLI: clienteId, // ID del cliente
+            VEN_IDCAC: 1,
+            VEN_FECHA: new Date().toISOString().split('T')[0], // Fecha actual en formato AAAA-MM-DD
+            VENT_TOTAL: totalVenta // Total de la venta
+        };
+
+        const ventaResponsepost = await apiService.postVenta(ventaData);
+
+        const ventasResponse = await apiService.getVentas(); // Obtener todas las ventas
+        console.log('ventasResponseget ', ventasResponse);
+        const ventas = ventasResponse;
+        console.log('ventas', ventas);
+
+        // Obtener la última venta registrada (la de mayor ID)
+        const ultimaVenta = ventas[ventas.length - 1]; // Asume que las ventas están en orden
+        const ventaId = ultimaVenta.id; // Obtener el ID de la última venta
+
+        // 2. Registrar cada producto en DVA_DETALLE_VENTA
+        for (let producto of productos) {
+            const detalleVentaData = {
+                DVA_IDVEN: ventaId, // ID de la venta
+                DVA_IDART: producto.id, // ID del artículo
+                DVA_CANTIDAD: producto.cantidad, // Cantidad del producto
+                DVA_PRECIO_UNIDAD: producto.precio, // Precio unitario
+                DVA_SUBTOTAL: producto.total // Subtotal (precio * cantidad)
+            };
+
+            await apiService.postDetalleVenta(detalleVentaData);
+        }
+
+        // 3. Mostrar éxito y resetear la venta
+        Swal.fire('Éxito', 'La venta ha sido completada exitosamente.', 'success');
+        setProductos([]); // Limpiar productos
+        setTotalVenta(0); // Resetear total
+        setClienteId(null); // Resetear cliente
+
+    } catch (error) {
+        console.error('Error al completar la venta:', error);
+        Swal.fire('Error', 'No se pudo completar la venta.', 'error');
+    }
+};    
+
+    
     // Función para manejar el ingreso manual de productos
     const handleManualInput = async () => {
         try {
@@ -170,11 +235,11 @@ const Venta = () => {
             <div className="input-group w-25 p-3">
                 <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Seleccione</button>
                 <ul className="dropdown-menu">
-                    <li><a className="dropdown-item" href="#">NIT</a></li>
-                    <li><a className="dropdown-item" href="#">DPI</a></li>
-                    <li><a className="dropdown-item" href="#">C/F</a></li>
+                    <li><a className="dropdown-item" href="#" onClick={() => handleClienteSelection(1)}>C/F</a></li>
+                    <li><a className="dropdown-item" href="#" onClick={() => handleClienteSelection(2)}>Juan Perez</a></li>
+                    <li><a className="dropdown-item" href="#" onClick={() => handleClienteSelection(3)}>Maria Lopez</a></li>
                 </ul>
-                <input type="text" className="form-control" aria-label="Text input with dropdown button" />
+                <input type="text" className="form-control" aria-label="Text input with dropdown button" value={clienteId ? `Cliente seleccionado: ${clienteId}` : ''} readOnly />
             </div>
 
             <div>
@@ -213,7 +278,7 @@ const Venta = () => {
             <TableComponentVenta productos={productos} />
 
             <div className="d-flex justify-content-center w-100">
-                <button type="button" className="btn btn-outline-success mx-2">Completar Venta</button>
+                <button type="button" className="btn btn-outline-success mx-2" onClick={handleCompleteVenta}>Completar Venta</button>
                 <button type="button" className="btn btn-outline-danger mx-2">Cancelar Venta</button>
             </div>
         </div>

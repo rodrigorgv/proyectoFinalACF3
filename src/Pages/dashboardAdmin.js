@@ -9,7 +9,7 @@ const DashboardAdmin = () => {
             <div className="container-fluid">
                 <div className="titulo">
                     <h1>Dashboard SUPERMK</h1>
-                    <h3>Bienvenido al panel de administrador JUAN PEREZ</h3>
+                    <h3>Bienvenido al panel de administrador</h3>
                 </div>
 
                 <div className="row">
@@ -17,7 +17,7 @@ const DashboardAdmin = () => {
                     <CardComponent
                         title="SuperMercados"
                         iconClass="fa-solid fa-store"
-                        quantity={99999}
+                        
                         enlace={"/consultaSuperMercado"}
                         tipoTexto={"text-success"}
                         tipoBorde={"border-left-success"}
@@ -26,7 +26,7 @@ const DashboardAdmin = () => {
                     <CardComponent
                         title="Proveedores"
                         iconClass="fa-solid fa-warehouse"
-                        quantity={99999}
+                        
                         enlace={"/consultaProveedores"}
                         tipoTexto={"text-danger"}
                         tipoBorde={"border-left-danger"}
@@ -35,7 +35,7 @@ const DashboardAdmin = () => {
                     <CardComponent
                         title="Compra a proveedores"                    
                         iconClass="fas fa-money-check-alt"
-                        quantity={99999}
+                        
                         enlace={"/consultaCompra"}
                         tipoTexto={"text-warning"}
                         tipoBorde={"border-left-warning"}
@@ -44,8 +44,8 @@ const DashboardAdmin = () => {
                     <CardComponent
                         title="Kardex"                                            
                         iconClass="fas fa-flag-checkered"
-                        quantity={99999}
-                        enlace={"/consultaProveedores"}
+                        
+                        enlace={"/kardex"}
                         tipoTexto={"text-primary"}
                         tipoBorde={"border-left-primary"}
                     />
@@ -57,7 +57,7 @@ const DashboardAdmin = () => {
                         title="Articulos"
 
                         iconClass="fa-solid fa-box"
-                        quantity={99999}
+                        
                         enlace={"/consultaArticulo"}
                         tipoTexto={"text-primary"}
                         tipoBorde={"border-left-primary"}
@@ -66,7 +66,7 @@ const DashboardAdmin = () => {
                     <CardComponent
                         title="Categoria"
                         iconClass="fas fa-window-restore"
-                        quantity={99999}
+                        
                         enlace={"/consultaCategoria"}
                         tipoTexto={"text-warning"}
                         tipoBorde={"border-left-warning"}
@@ -75,7 +75,7 @@ const DashboardAdmin = () => {
                     <CardComponent
                         title="SubCategoria"
                         iconClass="fas fa-puzzle-piece"
-                        quantity={99999}
+                        
                         enlace={"/consultaSubCategoria"}
                         tipoTexto={"text-success"}
                         tipoBorde={"border-left-success"}
@@ -84,7 +84,7 @@ const DashboardAdmin = () => {
                     <CardComponent
                         title="Area"
                         iconClass="fas fa-layer-group"
-                        quantity={99999}
+                        
                         enlace={"/consultaArea"}
                         tipoTexto={"text-danger"}
                         tipoBorde={"border-left-danger"}
@@ -93,7 +93,7 @@ const DashboardAdmin = () => {
                     <CardComponent
                         title="Pasillo"
                         iconClass="fas fa-grip-lines-vertical"
-                        quantity={99999}
+                        
                         enlace={"/consultaPasillo"}
                         tipoTexto={"text-success"}
                         tipoBorde={"border-left-success"}
@@ -102,7 +102,7 @@ const DashboardAdmin = () => {
                     <CardComponent
                         title="Unidad de medida"
                         iconClass="fas fa-balance-scale"
-                        quantity={99999}
+                        
                         enlace={"/consultaUnidadMedida"}
                         tipoTexto={"text-danger"}
                         tipoBorde={"border-left-danger"}
@@ -114,7 +114,7 @@ const DashboardAdmin = () => {
                     <CardComponent
                         title="Empleado"
                         iconClass="fa-solid fa-person"
-                        quantity={99999}
+                        
                         enlace={"/consultaEmpleado"}
                         tipoTexto={"text-warning"}
                         tipoBorde={"border-left-warning"}
@@ -123,7 +123,7 @@ const DashboardAdmin = () => {
                     <CardComponent
                         title="Usuario"
                         iconClass="fas fa-users"
-                        quantity={99999}
+                        
                         enlace={"/consultaUsuario"}
                         tipoTexto={"text-info"}
                         tipoBorde={"border-left-info"}
@@ -132,7 +132,7 @@ const DashboardAdmin = () => {
                     <CardComponent
                         title="Perfil"
                         iconClass="fas fa-user-circle"
-                        quantity={99999}
+                        
                         enlace={"/consultaUsuario"}
                         tipoTexto={"text-primary"}
                         tipoBorde={"border-left-primary"}
@@ -141,7 +141,7 @@ const DashboardAdmin = () => {
                     <CardComponent
                         title="Puesto"
                         iconClass="fas fa-user-tie"
-                        quantity={99999}
+                        
                         enlace={"/consultaPuesto"}
                         tipoTexto={"text-success"}
                         tipoBorde={"border-left-success"}
@@ -150,7 +150,7 @@ const DashboardAdmin = () => {
                     <CardComponent
                         title="Caja de cobro"                        
                         iconClass="fas fa-cash-register"
-                        quantity={99999}
+                        
                         enlace={"/consultaCajasCobro"}
                         tipoTexto={"text-danger"}
                         tipoBorde={"border-left-danger"}
@@ -159,7 +159,7 @@ const DashboardAdmin = () => {
                     <CardComponent
                         title="Cliente"
                         iconClass="fas fa-walking"
-                        quantity={99999}
+                        
                         enlace={"/consultaCliente"}
                         tipoTexto={"text-warning"}
                         tipoBorde={"border-left-warning"}

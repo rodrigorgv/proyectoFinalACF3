@@ -10,13 +10,11 @@ const DashboardCajero = () => {
             <div className="container-fluid">
                 <div className="titulo">
                     <h1>Cajero #999 | SUPERMK</h1>
-                    <h3>Bienvenido JUAN PEREZ</h3>
                 </div>
                 <div className="d-flex justify-content-center">
                     <CardComponent
                         title="Registrar Venta"
                         iconClass="fas fa-cart-plus"
-                        quantity={99999}
                         enlace={"/venta"}
                         tipoTexto={"text-success"}
                         tipoBorde={"border-left-success"}
@@ -24,7 +22,6 @@ const DashboardCajero = () => {
                     <CardComponent
                         title="Mis ventas"
                         iconClass="fa-solid fa-list-check"
-                        quantity={99999}
                         enlace={"/ventasCajero"}
                         tipoTexto={"text-warning"}
                         tipoBorde={"border-left-warning"}

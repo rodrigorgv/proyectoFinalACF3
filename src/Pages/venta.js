@@ -51,7 +51,7 @@ const handleCompleteVenta = async () => {
             VEN_IDCLI: clienteId, // ID del cliente
             VEN_IDCAC: 1,
             VEN_FECHA: new Date().toISOString().split('T')[0], // Fecha actual en formato AAAA-MM-DD
-            VENT_TOTAL: totalVenta // Total de la venta
+            VEN_TOTAL: totalVenta // Total de la venta
         };
 
         const ventaResponsepost = await apiService.postVenta(ventaData);
@@ -230,6 +230,7 @@ const handleCompleteVenta = async () => {
             <NavbarCajeroComponent />
             <div className="titulo">
                 <h3>Registrando venta</h3>
+                <h4>Total Venta: Q{totalVenta}</h4>
             </div>
             <label>Ingrese información del cliente</label>
             <div className="input-group w-25 p-3">

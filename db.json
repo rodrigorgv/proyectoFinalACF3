@@ -327,6 +327,53 @@
       "COM_PRECIO_UNIDAD": "2",
       "COM_TOTAL": 240,
       "id": "5"
+    },
+    {
+      "id": "ea66",
+      "COM_IDPRO": "1",
+      "COM_IDART": "1",
+      "COM_DESCRIPCION": "TEST",
+      "COM_FECHA": "2024-10-26T17:57",
+      "COM_CANTIDAD": "1",
+      "COM_PRECIO_UNIDAD": "10"
+    },
+    {
+      "id": "7040",
+      "COM_IDPRO": "1",
+      "COM_IDART": "1",
+      "COM_DESCRIPCION": "1",
+      "COM_FECHA": "2024-10-26",
+      "COM_CANTIDAD": "1",
+      "COM_PRECIO_UNIDAD": "1"
+    },
+    {
+      "id": "25c9",
+      "COM_IDPRO": "1",
+      "COM_IDART": "1",
+      "COM_DESCRIPCION": "1",
+      "COM_FECHA": "2024-10-26",
+      "COM_CANTIDAD": 1,
+      "COM_PRECIO_UNIDAD": 1
+    },
+    {
+      "id": "45d9",
+      "COM_IDPRO": "1",
+      "COM_IDART": "1",
+      "COM_DESCRIPCION": "test",
+      "COM_FECHA": "2024-10-26",
+      "COM_CANTIDAD": 1,
+      "COM_PRECIO_UNIDAD": 1,
+      "COM_TOTAL": 0
+    },
+    {
+      "id": "8126",
+      "COM_IDPRO": "1",
+      "COM_IDART": "1",
+      "COM_DESCRIPCION": "test3",
+      "COM_FECHA": "2024-10-26",
+      "COM_CANTIDAD": 5,
+      "COM_PRECIO_UNIDAD": 4,
+      "COM_TOTAL": 20
     }
   ],
   "VEN_VENTA": [

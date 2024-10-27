@@ -50,7 +50,7 @@ const Compras = () => {
           <br/>          
           <label for="fecha">Fecha:</label>
           <br/>
-          <input type="datetime-local" id="fecha" class="swal2-input" value="${new Date(compra.COM_FECHA).toISOString().slice(0, 16)}">
+          <input type="date" id="fecha" class="swal2-input" value="${new Date(compra.COM_FECHA).toISOString().slice(0, 16)}">
           <br/>          
           <label for="cantidad">Cantidad:</label>
           <br/>
@@ -60,9 +60,6 @@ const Compras = () => {
           <br/>
           <input type="number" id="precioUnidad" class="swal2-input" value="${compra.COM_PRECIO_UNIDAD}">
           <br/>          
-          <label for="total">Total:</label>
-          <br/>
-          <input type="text" id="total" class="swal2-input" value="${total}" >
         </div>
         <script>
           function calculateTotal() {
@@ -84,16 +81,18 @@ const Compras = () => {
           const descripcion = Swal.getPopup().querySelector('#descripcion').value;
           const fecha = Swal.getPopup().querySelector('#fecha').value;
           const cantidad = Swal.getPopup().querySelector('#cantidad').value;
+          const cantidadFrm = parseFloat(cantidad) || 0;
           const precioUnidad = Swal.getPopup().querySelector('#precioUnidad').value;
-          const total = Swal.getPopup().querySelector('#total').value;
+          const precioUnidadFrm = parseFloat(precioUnidad) || 0;
+          const total = cantidadFrm * precioUnidadFrm;
 
           apiService.updateCompra(id, {
             COM_IDPRO: idpro,
             COM_IDART: idart,
             COM_DESCRIPCION: descripcion,
             COM_FECHA: fecha,
-            COM_CANTIDAD: cantidad,
-            COM_PRECIO_UNIDAD: precioUnidad,
+            COM_CANTIDAD: cantidadFrm,
+            COM_PRECIO_UNIDAD: precioUnidadFrm,
             COM_TOTAL: total // Incluir el total en el post
           });
         }
@@ -155,7 +154,7 @@ const Compras = () => {
       <br/>
       <label for="fecha">Fecha:</label>
       <br/>
-      <input type="datetime-local" id="fecha" class="swal2-input">
+      <input type="date" id="fecha" class="swal2-input">
       <br/>
       <label for="cantidad">Cantidad:</label>
       <br/>
@@ -164,10 +163,6 @@ const Compras = () => {
       <label for="precioUnidad">Precio por Unidad:</label>
       <br/>
       <input type="number" id="precioUnidad" class="swal2-input" placeholder="Ingrese el precio por unidad">
-      <br/>
-      <label id="total" for="total">Total:</label>
-      <br/>
-      <input type="number" id="total" class="swal2-input" placeholder="Ingrese el total">
       <br/>
     </div>
     <script>
@@ -190,8 +185,10 @@ const Compras = () => {
         const descripcion = Swal.getPopup().querySelector('#descripcion').value;
         const fecha = Swal.getPopup().querySelector('#fecha').value;
         const cantidad = Swal.getPopup().querySelector('#cantidad').value;
+        const cantidadFrm = parseFloat(cantidad) || 0;
         const precioUnidad = Swal.getPopup().querySelector('#precioUnidad').value;
-        const total = Swal.getPopup().querySelector('#total').value;
+        const precioUnidadFrm = parseFloat(precioUnidad) || 0;
+        const total = cantidadFrm * precioUnidadFrm;
   
         try {
           await apiService.postCompra({
@@ -199,8 +196,8 @@ const Compras = () => {
             COM_IDART: idart,
             COM_DESCRIPCION: descripcion,
             COM_FECHA: fecha,
-            COM_CANTIDAD: cantidad,
-            COM_PRECIO_UNIDAD: precioUnidad,
+            COM_CANTIDAD: cantidadFrm,
+            COM_PRECIO_UNIDAD: precioUnidadFrm,
             COM_TOTAL: total // Incluir el total en el post
           });
           Swal.fire('Creación exitosa', 'La nueva compra ha sido creada.', 'success');

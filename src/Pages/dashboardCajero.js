@@ -9,7 +9,7 @@ const DashboardCajero = () => {
             <NavbarCajeroComponent />
             <div className="container-fluid">
                 <div className="titulo">
-                    <h1>Cajero #999 | SUPERMK</h1>
+                    <h1>SUPERMK</h1>
                 </div>
                 <div className="d-flex justify-content-center">
                     <CardComponent

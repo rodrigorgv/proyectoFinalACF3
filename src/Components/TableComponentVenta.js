@@ -16,8 +16,8 @@ const TableComponentVenta = ({ productos }) => {
                     <tr key={index}>
                         <td>{producto.nombre}</td>
                         <td>{producto.cantidad}</td>
-                        <td>{producto.precio.toFixed(2)}</td>
-                        <td>{producto.total.toFixed(2)}</td>
+                        <td>{producto.precio}</td>
+                        <td>{producto.total}</td>
                     </tr>
                 ))}
             </tbody>

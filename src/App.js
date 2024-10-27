@@ -23,6 +23,7 @@ import Compras from './Pages/compras';
 import Articulo from './Pages/articulo';
 import MisVentasCajero from './Pages/misVentasCajero';
 import KardexPage from './Pages/kardex';
+import Perfil from './Pages/perfil';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
               <Route path="/consultaCompra" element={<Compras />} />
               <Route path="/consultaArticulo" element={<Articulo />} />
               <Route path="/kardex" element={<KardexPage />} />
+              <Route path='/perfil' element={<Perfil />} />
             </Route>
             <Route element={<PrivateRouteCajero/>}>
               <Route path="/dashboardCajero" element={<DashboardCajero />} />

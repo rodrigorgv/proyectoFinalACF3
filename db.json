@@ -423,6 +423,13 @@
       "VEN_IDCAC": 1,
       "VEN_FECHA": "2024-10-27",
       "VEN_TOTAL": 74
+    },
+    {
+      "id": "4699",
+      "VEN_IDCLI": 1,
+      "VEN_IDCAC": 1,
+      "VEN_FECHA": "2024-10-27",
+      "VEN_TOTAL": 50
     }
   ],
   "DVA_DETALLE_VENTA": [
@@ -502,6 +509,14 @@
       "DVA_CANTIDAD": 3,
       "DVA_PRECIO_UNIDAD": 8,
       "DVA_SUBTOTAL": 24
+    },
+    {
+      "id": "7f0d",
+      "DVA_IDVEN": "4699",
+      "DVA_IDART": "1",
+      "DVA_CANTIDAD": 2,
+      "DVA_PRECIO_UNIDAD": 25,
+      "DVA_SUBTOTAL": 50
     }
   ],
   "ART_ARTICULO": [

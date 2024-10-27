@@ -139,6 +139,7 @@ const handleCompleteVenta = async () => {
                 }
 
                 const nuevoProducto = {
+                    id: articuloSeleccionado.id,
                     nombre: articuloSeleccionado.ART_NOMBRE,
                     cantidad: parseInt(cantidad, 10),
                     precio: parseFloat(articuloSeleccionado.ART_PRECIO),
